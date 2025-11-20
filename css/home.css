@@ -8,6 +8,36 @@
     --light-bg: #1a1a1a;
     --dark-text: #333333;
     --shadow: 0 4px 10px rgba(36, 57, 62, 0.1);
+    --card-bg: #2d2d2d;
+    --surface: #363636;
+    --border-color: #404040;
+    --muted: #b0b0b0;
+    --text-light: #e0e0e0;
+}
+
+/* Utility classes to reduce repetition */
+.card-bg {
+    background-color: var(--card-bg) !important;
+}
+
+.surface-bg {
+    background-color: var(--surface) !important;
+}
+
+.bd {
+    border-color: var(--border-color) !important;
+}
+
+.muted {
+    color: var(--muted) !important;
+}
+
+.text-light {
+    color: var(--text-light) !important;
+}
+
+.shadow-standard {
+    box-shadow: var(--shadow);
 }
 
 .text-medical-blue {
@@ -21,7 +51,7 @@
 body {
     background-color: var(--light-bg);
     font-family: 'Poppins', sans-serif;
-    color: #e0e0e0;
+    color: var(--text-light);
 }
 
 /* ===== BUTTON STYLES ===== */
@@ -127,8 +157,8 @@ body {
 /* ===== PRODUCT STYLES ===== */
 .product-item {
     transition: all 0.5s ease;
-    background-color: #2d2d2d !important;
-    border: 1px solid #404040;
+    background-color: var(--card-bg) !important;
+    border: 1px solid var(--border-color);
     border-radius: 12px;
     overflow: hidden;
 }
@@ -151,7 +181,7 @@ body {
 
 .product-item .h6 {
     font-weight: normal;
-    color: #e0e0e0;
+    color: var(--text-light);
     transition: all 0.3s ease;
 }
 
@@ -214,7 +244,7 @@ body {
     overflow: hidden;
     box-shadow: 0 6px 20px rgba(36, 57, 62, 0.2);
     transition: all 0.4s ease;
-    background-color: #2d2d2d;
+    background-color: var(--card-bg);
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -268,7 +298,7 @@ body {
 
 .description {
     padding: 20px 15px;
-    background-color: #363636;
+    background-color: var(--surface);
     flex-grow: 1;
     display: flex;
     flex-direction: column;
@@ -283,7 +313,7 @@ body {
 }
 
 .description .text-muted {
-    color: #b0b0b0 !important;
+    color: var(--muted) !important;
     font-size: 0.9rem;
     line-height: 1.5;
     flex-grow: 1;
@@ -320,8 +350,8 @@ body {
     justify-content: center;
     width: 40px;
     height: 40px;
-    background-color: #2d2d2d;
-    color: white;
+    background-color: var(--card-bg);
+    color: var(--white);
     border-radius: 50%;
     transition: all 0.3s ease;
     text-decoration: none;
@@ -358,7 +388,7 @@ body {
 }
 
 .back-to-top:hover {
-    background-color: #404040;
+    background-color: var(--border-color);
     border-color: var(--medical-blue);
 }
 
@@ -371,20 +401,20 @@ body {
     .lead {
         font-size: 1rem;
     }
-    
+
     .offer-container {
         height: 250px;
     }
-    
+
     .offer-text {
         font-size: 20px;
     }
-    
+
     .best-seller-title {
         font-size: 1.2rem !important;
         padding: 8px 20px !important;
     }
-    
+
     .outfit-card {
         margin-bottom: 20px;
     }
@@ -392,8 +422,8 @@ body {
 
 /* ===== PRODUCT DETAIL PAGE STYLES ===== */
 .product-detail-card {
-    background-color: #2d2d2d;
-    border: 1px solid #404040;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
     border-radius: 12px;
 }
 
@@ -415,7 +445,7 @@ body {
     width: 25px;
     height: 25px;
     border-radius: 50%;
-    border: 2px solid #404040;
+    border: 2px solid var(--border-color);
     cursor: pointer;
     transition: all 0.3s ease;
 }
@@ -445,149 +475,104 @@ body {
 }
 
 .product-features {
-    background-color: #363636;
+    background-color: var(--surface);
     padding: 15px;
     border-radius: 8px;
     margin-top: 20px;
 }
 
 .table-bordered {
-    border-color: #404040 !important;
+    border-color: var(--border-color) !important;
 }
 
 .table-bordered td {
-    border-color: #404040 !important;
-    color: #e0e0e0;
+    border-color: var(--border-color) !important;
+    color: var(--text-light);
 }
 
 /* Ensure dark theme consistency */
 .text-muted {
-    color: #b0b0b0 !important;
+    color: var(--muted) !important;
 }
 
 .bg-light {
-    background-color: #363636 !important;
+    background-color: var(--surface) !important;
 }
 
 /* ===== CONTACT US PAGE STYLES ===== */
 .contact-container {
-    max-width: 1000px;
-    margin: 40px auto;
-    background: #2d2d2d;
-    padding: 40px;
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-    border: 1px solid #404040;
+    max-width: 800px;
+    margin: 20px auto;
+    background: var(--card-bg);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--border-color);
 }
 
 .contact-header {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 25px;
 }
 
 .contact-header h1 {
-    font-size: 36px;
+    font-size: 28px;
     font-weight: bold;
     color: #ffffff;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 
 .contact-info {
-    background-color: #363636;
-    padding: 25px;
-    border-radius: 10px;
-    margin-bottom: 30px;
-    border: 1px solid #404040;
+    background-color: var(--section-bg);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border-color);
 }
 
 .contact-item {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
-    padding: 15px;
-    background: #2d2d2d;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    border: 1px solid #404040;
+    margin-bottom: 15px;
+    padding: 12px;
+    background: var(--card-bg);
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--border-color);
 }
 
 .contact-icon {
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
     background: var(--medical-blue);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 15px;
+    margin-right: 12px;
     color: white;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .contact-details h5 {
     margin: 0;
     color: #ffffff;
     font-weight: bold;
+    font-size: 16px;
 }
 
 .contact-details p {
-    margin: 5px 0 0 0;
+    margin: 3px 0 0 0;
     color: #b0b0b0;
-}
-
-.form-label {
-    font-weight: 600;
-    color: #ffffff;
-    margin-bottom: 8px;
-}
-
-.contact-form .form-control {
-    border: 2px solid #404040;
-    border-radius: 8px;
-    padding: 12px 15px;
-    margin-bottom: 20px;
-    transition: all 0.3s ease;
-    background-color: #363636;
-    color: #e0e0e0;
-}
-
-.contact-form .form-control:focus {
-    border-color: var(--medical-blue);
-    box-shadow: 0 0 0 0.2rem rgba(36, 57, 62, 0.25);
-    background-color: #2d2d2d;
-    color: #ffffff;
-}
-
-.contact-form textarea.form-control {
-    resize: vertical;
-    min-height: 120px;
-}
-
-.btn-send {
-    background-color: var(--medical-blue);
-    border: none;
-    color: white;
-    font-weight: bold;
-    padding: 15px 40px;
-    font-size: 18px;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    width: 100%;
-    margin-top: 10px;
-}
-
-.btn-send:hover {
-    background-color: var(--medical-dark);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    font-size: 14px;
 }
 
 .working-hours {
-    background: #363636;
-    padding: 20px;
-    border-radius: 10px;
-    margin-top: 20px;
-    border: 1px solid #404040;
+    background: var(--section-bg);
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+    border: 1px solid var(--border-color);
 }
 
 .hours-list {
@@ -597,9 +582,10 @@ body {
 }
 
 .hours-list li {
-    padding: 8px 0;
-    border-bottom: 1px solid #404040;
-    color: #b0b0b0;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-muted);
+    font-size: 14px;
 }
 
 .hours-list li:last-child {
@@ -615,34 +601,35 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 45px;
-    height: 45px;
-    background: #2d2d2d;
-    color: white;
+    width: 40px;
+    height: 40px;
+    background: var(--card-bg);
+    color: var(--white);
     border-radius: 50%;
-    margin: 0 8px;
+    margin: 0 6px;
     transition: all 0.3s ease;
     text-decoration: none;
-    border: 1px solid #404040;
+    border: 1px solid var(--border-color);
 }
 
 .contact-social .social-icon:hover {
     background: var(--medical-blue);
     color: white;
-    transform: translateY(-3px) scale(1.1);
-    box-shadow: 0 5px 15px rgba(36, 57, 62, 0.4);
-    text-decoration: none;
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 3px 10px rgba(36, 57, 62, 0.3);
 }
+
+
 
 /* ===== CHECKOUT PAGE STYLES ===== */
 .checkout-container {
     max-width: 1000px;
     margin: 30px auto;
-    background: #2d2d2d;
+    background: var(--card-bg);
     padding: 30px;
     border-radius: 15px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-    border: 1px solid #404040;
+    border: 1px solid var(--border-color);
 }
 
 .checkout-header {
@@ -658,11 +645,11 @@ body {
 }
 
 .order-summary {
-    background-color: #363636;
+    background-color: var(--surface);
     padding: 20px;
     border-radius: 10px;
     margin-bottom: 30px;
-    border: 1px solid #404040;
+    border: 1px solid var(--border-color);
 }
 
 .order-item {
@@ -691,20 +678,20 @@ body {
 }
 
 .checkout-form .form-control {
-    border: 2px solid #404040;
+    border: 2px solid var(--border-color);
     border-radius: 8px;
     padding: 12px;
     margin-bottom: 15px;
-    background-color: #363636;
-    color: #e0e0e0;
+    background-color: var(--surface);
+    color: var(--text-light);
     transition: all 0.3s ease;
 }
 
 .checkout-form .form-control:focus {
     border-color: var(--medical-blue);
     box-shadow: 0 0 0 0.2rem rgba(36, 57, 62, 0.25);
-    background-color: #2d2d2d;
-    color: #ffffff;
+    background-color: var(--card-bg);
+    color: var(--white);
 }
 
 .checkout-form textarea.form-control {
@@ -713,10 +700,10 @@ body {
 }
 
 .payment-methods {
-    background: #363636;
+    background: var(--surface);
     padding: 15px;
     border-radius: 8px;
-    border: 1px solid #404040;
+    border: 1px solid var(--border-color);
 }
 
 .form-check-input:checked {
@@ -740,4 +727,114 @@ body {
     background-color: var(--medical-dark);
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+
+
+
+
+
+
+
+
+
+.navbar-brand span {
+    font-family: 'Playfair Display', serif !important;
+    background-color: #24393E !important;
+}
+
+.navbar-brand span:first-child {
+    color: #E8D26E !important;
+}
+
+.navbar-brand span:last-child {
+    color: #E8D26E !important;
+}
+
+.navbar {
+    background-color: #24393E !important;
+}
+
+.best-seller-title {
+    background: linear-gradient(135deg, #24393E 0%, #2a4a52 100%) !important;
+    color: #E8D26E !important;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+}
+
+.section-title span {
+    background: linear-gradient(135deg, #24393E 0%, #2a4a52 100%) !important;
+    color: #E8D26E !important;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+}
+
+.cart-popup-content {
+    text-align: left;
+}
+
+.quantity-selector {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.quantity-btn {
+    width: 35px;
+    height: 35px;
+    border: 1px solid #24393E;
+    background: #f8f9fa;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.quantity-input {
+    width: 60px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.size-options,
+.color-options {
+    display: flex;
+    gap: 10px;
+    margin: 10px 0;
+    flex-wrap: wrap;
+}
+
+.size-option,
+.color-option {
+    padding: 8px 15px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.size-option.selected,
+.color-option.selected {
+    border-color: #24393E;
+    background-color: #24393E;
+    color: white;
+}
+
+.color-preview {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.price-summary {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 15px 0;
 }

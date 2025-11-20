@@ -1,0 +1,205 @@
+body {
+    background-color: #1a1a1a;
+    font-family: 'Poppins', sans-serif;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+}
+
+.login-container {
+    max-width: 450px;
+    width: 100%;
+    background: #2d2d2d;
+    padding: 50px 40px;
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    border: 1px solid #404040;
+    position: relative;
+    overflow: hidden;
+}
+
+.login-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(135deg, var(--medical-blue) 0%, var(--medical-dark) 100%);
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.brand-logo {
+    display: inline-flex;
+    margin-bottom: 25px;
+    padding: 15px;
+    background: linear-gradient(135deg, var(--medical-blue) 0%, var(--medical-dark) 100%);
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(36, 57, 62, 0.3);
+}
+
+.brand-logo i {
+    font-size: 42px;
+    color: white;
+}
+
+.login-header h1 {
+    font-size: 36px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 15px;
+    letter-spacing: 0.5px;
+    font-family: 'Playfair Display', serif;
+}
+
+.welcome-text {
+    color: #b0b0b0;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.form-label {
+    font-weight: 600;
+    color: white;
+    margin-bottom: 10px;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.input-icon {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.input-icon i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--medical-blue);
+    z-index: 2;
+    font-size: 18px;
+}
+
+.form-control {
+    border: 2px solid #404040;
+    border-radius: 10px;
+    padding: 15px 15px 15px 50px;
+    background-color: #363636;
+    color: white;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    height: 55px;
+}
+
+.form-control::placeholder {
+    color: #b0b0b0;
+    opacity: 1;
+}
+
+.form-control:focus {
+    border-color: var(--medical-blue);
+    box-shadow: 0 0 0 0.3rem rgba(36, 57, 62, 0.25);
+    background-color: #2d2d2d;
+    color: white;
+}
+
+.btn-login {
+    background: linear-gradient(135deg, var(--medical-blue) 0%, var(--medical-dark) 100%);
+    border: none;
+    color: white;
+    font-weight: bold;
+    padding: 16px;
+    font-size: 16px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    width: 100%;
+    margin-top: 20px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.btn-login:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(36, 57, 62, 0.4);
+    background: linear-gradient(135deg, var(--medical-light) 0%, var(--medical-blue) 100%);
+}
+
+.login-footer {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 25px;
+    border-top: 1px solid #404040;
+}
+
+.login-footer a {
+    color: var(--gold-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    font-size: 14px;
+}
+
+.login-footer a:hover {
+    color: var(--medical-light);
+    text-decoration: none;
+}
+
+.form-check-input:checked {
+    background-color: var(--medical-blue);
+    border-color: var(--medical-blue);
+}
+
+.form-check-label {
+    color: #b0b0b0;
+    font-size: 14px;
+}
+
+.forgot-password {
+    color: var(--gold-color);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.forgot-password:hover {
+    color: var(--medical-light);
+    text-decoration: underline;
+}
+
+.options-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* Animation for form elements */
+.input-icon {
+    animation: slideUp 0.5s ease forwards;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.input-icon:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.input-icon:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+@keyframes slideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

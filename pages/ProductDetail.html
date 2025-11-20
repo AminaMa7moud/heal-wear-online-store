@@ -5,117 +5,113 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Details - HEAL WEAR</title>
-
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Cormorant+Garamond:wght@300;400;500&family=Cormorant+Infant:wght@300;400;500&display=swap" rel="stylesheet">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../css/home.css">
-
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-
     <!-- Sweet Alert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../js/navbar.js"></script>
 
     <style>
-        .product-images-container {
-            height: 100%;
-        }
-        
-        .carousel-inner {
-            height: 700px;
-            border-radius: 10px;
+        .product-image-container {
+            height: 500px;
+            border-radius: 12px;
             overflow: hidden;
+            box-shadow: 0 8px 25px rgba(36, 57, 62, 0.15);
         }
-        
-        .carousel-item {
-            height: 100%;
-        }
-        
-        .carousel-item img {
+
+        .product-image-container img {
+            width: 100%;
             height: 100%;
             object-fit: cover;
-            width: 100%;
         }
-        
-        .product-info-container {
-            height: 400px;
+
+        .product-info-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid var(--border-color);
+            height: 500px;
+        }
+
+        .section-title {
+            color: var(--medical-blue);
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+
+        .size-options-container {
             display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            gap: 8px;
+            margin: 10px 0;
+            flex-wrap: wrap;
         }
-        
-        .quantity-selector {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin: 20px 0;
-        }
-        
-        .quantity-buttons {
-            display: flex;
-            align-items: center;
-            border: 2px solid var(--medical-blue);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        
-        .quantity-btn {
-            background: var(--medical-blue);
-            color: white;
-            border: none;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .quantity-btn:hover {
-            background: var(--medical-dark);
-        }
-        
-        .quantity-input {
-            width: 60px;
-            height: 40px;
-            border: none;
-            text-align: center;
-            font-weight: bold;
-            background: white;
-            color: var(--dark-text);
-        }
-        
-        .color-options, .size-options {
-            margin: 15px 0;
-        }
-        
-        .color-option, .size-option {
-            display: inline-block;
-            margin-right: 10px;
-            margin-bottom: 10px;
-            cursor: pointer;
-        }
-        
-        .color-swatch {
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            border: 3px solid transparent;
-            transition: all 0.3s ease;
+
+        .size-option {
             position: relative;
         }
-        
+
+        .size-option input {
+            display: none;
+        }
+
+        .size-label {
+            display: block;
+            padding: 0;
+            border: none;
+            border-radius: 0;
+            background: transparent;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 500;
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            min-width: 30px;
+        }
+
+        .size-option input:checked+.size-label {
+            background: transparent;
+            color: var(--medical-blue);
+            font-weight: 700;
+            transform: scale(1.1);
+        }
+
+        .color-options-container {
+            display: flex;
+            gap: 8px;
+            margin: 8px 0;
+            flex-wrap: wrap;
+        }
+
+        .color-option {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .color-swatch {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            border: 1.5px solid transparent;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
         .color-swatch.selected {
             border-color: var(--medical-blue);
             transform: scale(1.1);
         }
-        
+
         .color-swatch.selected::after {
             content: '✓';
             position: absolute;
@@ -124,79 +120,144 @@
             transform: translate(-50%, -50%);
             color: white;
             font-weight: bold;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            font-size: 10px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
         }
-        
-        .size-option input {
-            display: none;
+
+        .color-name {
+            position: absolute;
+            bottom: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 9px;
+            color: var(--text-muted);
+            white-space: nowrap;
         }
-        
-        .size-label {
-            display: inline-block;
-            padding: 8px 16px;
-            border: 2px solid #404040;
-            border-radius: 6px;
-            background: #363636;
-            color: #b0b0b0;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
-        
-        .size-option input:checked + .size-label {
-            border-color: var(--medical-blue);
-            background: var(--medical-blue);
-            color: white;
-            transform: scale(1.05);
-        }
-        
+
         .add-to-cart-btn {
             background: linear-gradient(135deg, var(--medical-blue) 0%, var(--medical-dark) 100%);
             border: none;
             color: white;
-            padding: 15px 30px;
-            border-radius: 10px;
-            font-weight: bold;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: 600;
             font-size: 16px;
             transition: all 0.3s ease;
-            margin-top: 20px;
             width: 100%;
+            margin-top: 20px;
         }
-        
+
         .add-to-cart-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(46, 91, 141, 0.4);
+            box-shadow: 0 6px 20px rgba(36, 57, 62, 0.3);
         }
-        
-        .product-features-grid {
+
+        .add-to-cart-btn:disabled {
+            background: #6c757d;
+            transform: none;
+            box-shadow: none;
+            cursor: not-allowed;
+        }
+
+        .stock-badge {
+            background: var(--medical-blue);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .out-of-stock {
+            background: #dc3545;
+        }
+
+        .low-stock {
+            background: #ffc107;
+            color: #000;
+        }
+
+        .product-features-section {
+            background: var(--section-bg);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 25px;
+            border-left: 3px solid var(--medical-blue);
+        }
+
+        .features-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-top: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
         }
-        
+
         .feature-item {
             display: flex;
             align-items: center;
-            gap: 8px;
-            color: #b0b0b0;
+            gap: 10px;
+            color: var(--text-light);
+            font-size: 0.9rem;
         }
-        
+
         .feature-item i {
             color: var(--medical-blue);
+            font-size: 14px;
+            width: 16px;
+        }
+
+        .product-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .rating-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .price-tag {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--gold-color);
+            margin-bottom: 15px;
+        }
+
+        .product-description {
+            font-size: 1rem;
+            line-height: 1.5;
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        .product-details-section {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 25px;
+            border: 1px solid var(--border-color);
+        }
+
+        .details-features-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-top: 25px;
         }
     </style>
 </head>
 
 <body>
-
     <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg bg-dark navbar-dark my-2 ">
+    <nav class="navbar navbar-expand-lg navbar-dark my-2">
         <div class="container-fluid">
             <!-- Left Section (Brand) -->
-            <a class="navbar-brand me-5">
-                <span class="h1 text-uppercase text-white bg-medical-blue px-2 rounded-start">Heal</span>
-                <span class="h1 text-uppercase text-medical-blue bg-white px-2 rounded-end">Wear</span>
+            <a class="navbar-brand me-5" href="../index.html">
+                <span class="h1 text-uppercase px-2 rounded-start">Heal</span>
+                <span class="h1 text-uppercase px-2 rounded-end">Wear</span>
             </a>
 
             <!-- toggler with target id  -->
@@ -209,8 +270,8 @@
             <!-- collapsable content -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-5">
-                    <li class="nav-item"><a href="../index.html" class="nav-link text-white active nav-hover">Home</a></li>
-                    <li class="nav-item"><a href="../index.html" class="nav-link text-white nav-hover">Products</a></li>
+                    <li class="nav-item"><a href="../index.html" class="nav-link text-white nav-hover">Home</a></li>
+                    <li class="nav-item"><a href="../index.html#products" class="nav-link text-white nav-hover">Products</a></li>
                     <li class="nav-item"><a href="contactUs.html" class="nav-link text-white nav-hover">Contact Us</a></li>
                 </ul>
 
@@ -233,203 +294,123 @@
     <!-- Product Details -->
     <div class="container-fluid pb-5 mt-4">
         <div class="row px-xl-5">
-            <!-- Product Images -->
-            <div class="col-lg-5 mb-4">
-                <div class="product-images-container">
-                    <div id="product-carousel" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img class="d-block w-100" src="../imges/outfits/1_1.JPG" alt="Medical Scrubs">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block w-100" src="../imges/outfits/1_2.JPG" alt="Medical Scrubs">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block w-100" src="../imges/outfits/1_3.JPG" alt="Medical Scrubs">
-                            </div>
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#product-carousel"
-                            data-bs-slide="prev">
-                            <i class="fa fa-2x fa-angle-left text-white"></i>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#product-carousel"
-                            data-bs-slide="next">
-                            <i class="fa fa-2x fa-angle-right text-white"></i>
-                        </button>
-                    </div>
+            <!-- Product Image -->
+            <div class="col-lg-6 mb-4">
+                <div class="product-image-container">
+                    <img id="productMainImage" src="" alt="Product Image" class="img-fluid">
                 </div>
             </div>
 
             <!-- Product Info -->
-            <div class="col-lg-7 mb-4">
-                <div class="h-100 p-4 rounded product-detail-card product-info-container">
-                    <div>
-                        <h3 class="text-uppercase fw-bold text-medical-blue mb-3">Professional Medical Scrubs</h3>
-
-                        <div class="d-flex align-items-center mb-3">
-                            <div class="text-medical-blue me-2">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                                <i class="far fa-star"></i>
-                            </div>
-                            <small class="text-muted">(4.5/5) - 128 Reviews</small>
-                        </div>
-
-                        <h3 class="fw-semi-bold mb-4 text-medical-blue">350 EGP</h3>
-
-                        <p class="mb-4 text-muted">
-                            Premium medical scrubs designed for healthcare professionals. Features breathable fabric, 
-                            multiple functional pockets, and comfortable fit perfect for long shifts in medical environments.
-                        </p>
+            <div class="col-lg-6 mb-4">
+                <div class="product-info-card">
+                    <!-- Product Header -->
+                    <div class="product-meta">
+                        <h1 class="h3 fw-bold text-medical-blue mb-0" id="productName">Loading...</h1>
+                        <span class="stock-badge" id="stockBadge">Loading...</span>
                     </div>
 
-                    <div>
-                        <!-- Size Selection -->
-                        <div class="size-options">
-                            <strong class="text-medical-blue me-3">Size:</strong>
-                            <div class="d-flex flex-wrap mt-2">
-                                <label class="size-option">
-                                    <input type="radio" name="size" value="S" checked>
-                                    <span class="size-label">S</span>
-                                </label>
-                                <label class="size-option">
-                                    <input type="radio" name="size" value="M">
-                                    <span class="size-label">M</span>
-                                </label>
-                                <label class="size-option">
-                                    <input type="radio" name="size" value="L">
-                                    <span class="size-label">L</span>
-                                </label>
-                                <label class="size-option">
-                                    <input type="radio" name="size" value="XL">
-                                    <span class="size-label">XL</span>
-                                </label>
-                            </div>
-                        </div>
+                    <!-- Rating and Price -->
+                    <div class="rating-container">
+                        <div class="text-medical-blue" id="productRating"></div>
+                        <small class="text-muted" id="ratingText">Loading...</small>
+                    </div>
 
-                        <!-- Color Selection -->
-                        <div class="color-options">
-                            <strong class="text-medical-blue me-3">Color:</strong>
-                            <div class="d-flex flex-wrap mt-2">
-                                <div class="color-option" data-color="Navy Blue">
-                                    <div class="color-swatch selected" style="background-color: #2E5B8D;"></div>
-                                </div>
-                                <div class="color-option" data-color="Sky Blue">
-                                    <div class="color-swatch" style="background-color: #4A7BB6;"></div>
-                                </div>
-                                <div class="color-option" data-color="Green">
-                                    <div class="color-swatch" style="background-color: #198754;"></div>
-                                </div>
-                                <div class="color-option" data-color="Gray">
-                                    <div class="color-swatch" style="background-color: #6c757d;"></div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="price-tag" id="productPrice">Loading...</div>
 
-                        <!-- Quantity Selection -->
-                        <div class="quantity-selector">
-                            <strong class="text-medical-blue">Quantity:</strong>
-                            <div class="quantity-buttons">
-                                <button class="quantity-btn minus">
-                                    <i class="fas fa-minus"></i>
-                                </button>
-                                <input type="text" class="quantity-input" value="1" min="1" max="10">
-                                <button class="quantity-btn plus">
-                                    <i class="fas fa-plus"></i>
-                                </button>
-                            </div>
-                        </div>
+                    <p class="product-description" id="productDescription">
+                        Loading product description...
+                    </p>
 
-                        <!-- Add to Cart Button -->
-                        <button class="add-to-cart-btn">
-                            <i class="fa fa-shopping-cart me-2"></i>Add To Cart
-                        </button>
-
-                        <!-- Product Features -->
-                        <div class="product-features-grid">
-                            <div class="feature-item">
-                                <i class="fas fa-check"></i>
-                                <span>Premium Cotton</span>
-                            </div>
-                            <div class="feature-item">
-                                <i class="fas fa-check"></i>
-                                <span>Machine Washable</span>
-                            </div>
-                            <div class="feature-item">
-                                <i class="fas fa-check"></i>
-                                <span>Multiple Pockets</span>
-                            </div>
-                            <div class="feature-item">
-                                <i class="fas fa-check"></i>
-                                <span>Comfort Fit</span>
-                            </div>
+                    <!-- Size Selection -->
+                    <div class="mb-3">
+                        <div class="section-title">SELECT SIZE</div>
+                        <div class="size-options-container" id="sizeOptions">
+                            <!-- Sizes will be loaded dynamically -->
                         </div>
                     </div>
+
+                    <!-- Color Selection -->
+                    <div class="mb-3">
+                        <div class="section-title">SELECT COLOR</div>
+                        <div class="color-options-container" id="colorOptions">
+                            <!-- Colors will be loaded dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- Add to Cart Button -->
+                    <button class="add-to-cart-btn" id="addToCartBtn">
+                        <i class="fa fa-shopping-cart me-2"></i>Add To Cart
+                    </button>
                 </div>
             </div>
         </div>
 
-        <!-- Product Description -->
-        <div class="row px-xl-5 mt-4">
+        <!-- Product Details and Features -->
+        <div class="row px-xl-5 mt-3">
             <div class="col-12">
-                <div class="p-4 rounded product-detail-card">
-                    <h4 class="mb-4 text-medical-blue">Product Description</h4>
-                    <p class="text-muted">
-                        Our Professional Medical Scrubs are specifically designed for healthcare professionals 
-                        who demand both comfort and functionality. Crafted from premium quality cotton blend fabric, 
-                        these scrubs offer exceptional breathability and durability for long shifts.
-                    </p>
-                    <p class="text-muted">
-                        Featuring strategically placed pockets for medical instruments and personal items, 
-                        these scrubs combine practical design with professional appearance. The comfortable 
-                        fit allows for maximum mobility while maintaining a polished look throughout your workday.
-                    </p>
-                    <div class="row mt-4">
-                        <div class="col-md-6">
-                            <table class="table table-bordered">
-                                <tbody>
-                                    <tr>
-                                        <td><strong>Material Composition</strong></td>
-                                        <td>65% Cotton, 35% Polyester</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Fabric Weight</strong></td>
-                                        <td>180 GSM</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Care Instructions</strong></td>
-                                        <td>Machine wash 40°C, Tumble dry low</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Available Sizes</strong></td>
-                                        <td>S, M, L, XL</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="col-md-6">
-                            <table class="table table-bordered">
-                                <tbody>
-                                    <tr>
-                                        <td><strong>Pockets</strong></td>
-                                        <td>4 Functional Pockets</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Closure</strong></td>
-                                        <td>Elastic Waist with Drawstring</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Color Fastness</strong></td>
-                                        <td>Excellent</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Origin</strong></td>
-                                        <td>Made in Egypt</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                <div class="details-features-container">
+                    <!-- Product Details -->
+                    <div class="product-details-section">
+                        <h4 class="mb-3 text-medical-blue">Product Details</h4>
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr>
+                                    <td class="fw-bold" style="width: 40%;">Material Composition</td>
+                                    <td>65% Cotton, 35% Polyester</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">Fabric Weight</td>
+                                    <td>180 GSM</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">Care Instructions</td>
+                                    <td>Machine wash 40°C, Tumble dry low</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">Available Sizes</td>
+                                    <td id="availableSizes">Loading...</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">Pockets</td>
+                                    <td>4 Functional Pockets</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">Closure</td>
+                                    <td>Elastic Waist with Drawstring</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">Origin</td>
+                                    <td>Made in Egypt</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Product Features -->
+                    <div class="product-features-section">
+                        <h4 class="mb-3 text-medical-blue">Product Features</h4>
+                        <div class="features-grid">
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Premium Quality Fabric</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Machine Washable</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Multiple Functional Pockets</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Comfort Fit for Long Shifts</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Breathable Material</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -445,9 +426,9 @@
                 <p class="mb-4">
                     Premium medical scrubs for healthcare professionals. Quality, comfort, and style for your medical practice.
                 </p>
-                <p class="mb-2"><i class="fa fa-envelope text-medical-blue me-2"></i> support@healwear.com</p>
+                <p class="mb-2"><i class="fa fa-envelope text-medical-blue me-2"></i>mgharieb073@gmail.com</p>
                 <p class="mb-1"><i class="fa fa-phone-alt text-medical-blue me-2"></i>01126617256</p>
-                <p class="mb-1"><i class="fa fa-phone-alt text-medical-blue me-2"></i>+20 11 40243393</p>
+                <p class="mb-1"><i class="fa fa-phone-alt text-medical-blue me-2"></i>01140243393</p>
                 <p class="mb-0"><i class="fab fa-whatsapp text-medical-blue me-2"></i>01270018749</p>
             </div>
 
@@ -456,13 +437,13 @@
                     <div class="col-md-4 mb-5">
                         <h5 class="text-uppercase mb-4">Quick Shop</h5>
                         <div class="d-flex flex-column justify-content-start align-items-start">
-                            <a class="text-white mb-2 footer-link" href="../index.html"><i
+                            <a class="text-white mb-2 footer-link" href="index.html"><i
                                     class="fa fa-angle-right text-medical-blue mr-2 me-2"></i>Home</a>
-                            <a class="text-white mb-2 footer-link" href="ShoppingCart.html"><i
+                            <a class="text-white mb-2 footer-link" href="pages/ShoppingCart.html"><i
                                     class="fa fa-angle-right text-medical-blue mr-2 me-2"></i>Shopping Cart</a>
-                            <a class="text-white mb-2 footer-link" href="checkout.html"><i
+                            <a class="text-white mb-2 footer-link" href="pages/checkout.html"><i
                                     class="fa fa-angle-right text-medical-blue mr-2 me-2"></i>Checkout</a>
-                            <a class="text-white footer-link" href="contactUs.html">
+                            <a class="text-white footer-link" href="pages/contactUs.html">
                                 <i class="fa fa-angle-right text-medical-blue mr-2 me-2"></i>Contact Us</a>
                         </div>
                     </div>
@@ -478,7 +459,7 @@
                                 <a href="https://www.instagram.com/healwear9?igsh=MTFrOWV2aWk2OHllZw==" class="social-icon ms-2" target="_blank">
                                     <i class="fab fa-instagram mr-2 p-2"></i>
                                 </a>
-                                <a href="https://www.tiktok.com/@user24154977333434?_r=1&_t=ZS-91VpRGPdtpv" class="social-icon ms-2" target="_blank">
+                                <a href="https://www.tiktok.com/@heal.wear8?_r=1&_t=ZS-91XWObCaAOG" class="social-icon ms-2" target="_blank">
                                     <i class="fab fa-tiktok mr-2 p-2"></i>
                                 </a>
                                 <a href="https://wa.me/message/B7TX3HKZ365FG1" class="social-icon ms-2" target="_blank">
@@ -503,65 +484,424 @@
 
     <!-- Custom JS -->
     <script>
-        // Quantity buttons functionality
-        document.querySelector('.quantity-btn.plus').addEventListener('click', function () {
-            const input = document.querySelector('.quantity-input');
-            if (parseInt(input.value) < 10) {
-                input.value = parseInt(input.value) + 1;
+        // Get product from localStorage
+        function getSelectedProduct() {
+            const savedProduct = localStorage.getItem('healwear_selected_product');
+            if (savedProduct) {
+                return JSON.parse(savedProduct);
             }
-        });
+            return null;
+        }
 
-        document.querySelector('.quantity-btn.minus').addEventListener('click', function () {
-            const input = document.querySelector('.quantity-input');
-            if (parseInt(input.value) > 1) {
-                input.value = parseInt(input.value) - 1;
-            }
-        });
+        // Check if product already exists in cart
+        function isProductInCart(productId, size, color) {
+            const currentUser = JSON.parse(localStorage.getItem('healwear_current_user'));
+            if (!currentUser || !currentUser.cart) return false;
 
-        // Color selection
-        document.querySelectorAll('.color-option').forEach(option => {
-            option.addEventListener('click', function() {
-                // Remove selected class from all colors
-                document.querySelectorAll('.color-swatch').forEach(swatch => {
-                    swatch.classList.remove('selected');
-                });
-                // Add selected class to clicked color
-                this.querySelector('.color-swatch').classList.add('selected');
-            });
-        });
+            return currentUser.cart.some(item => 
+                item.productId === productId && 
+                item.size === size && 
+                item.color === color
+            );
+        }
 
-        // Add to cart functionality
-        document.querySelector('.add-to-cart-btn').addEventListener('click', function() {
-            const quantity = document.querySelector('.quantity-input').value;
-            const size = document.querySelector('input[name="size"]:checked').value;
-            const color = document.querySelector('.color-swatch.selected').parentElement.dataset.color;
+        // Load product data
+        function loadProductData() {
+            const product = getSelectedProduct();
             
+            if (!product) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Product Not Found',
+                    text: 'No product selected. Redirecting to home page...',
+                    confirmButtonColor: '#24393E'
+                }).then(() => {
+                    window.location.href = '../index.html';
+                });
+                return;
+            }
+
+            // Update page title
+            document.title = `${product.name} - HEAL WEAR`;
+
+            // Update product information
+            document.getElementById('productName').textContent = product.name;
+            document.getElementById('productPrice').textContent = `${product.price} EGP`;
+            document.getElementById('productDescription').textContent = product.description;
+            document.getElementById('availableSizes').textContent = product.availableSizes.join(', ');
+
+            // Update product image
+            document.getElementById('productMainImage').src = product.image;
+            document.getElementById('productMainImage').alt = product.name;
+
+            // Update stock badge
+            const stockBadge = document.getElementById('stockBadge');
+            if (product.stock === 0) {
+                stockBadge.textContent = 'Out of Stock';
+                stockBadge.classList.add('out-of-stock');
+                document.getElementById('addToCartBtn').disabled = true;
+                document.getElementById('addToCartBtn').innerHTML = '<i class="fas fa-times me-2"></i>Out of Stock';
+            } else if (product.stock < 10) {
+                stockBadge.textContent = `Only ${product.stock} left`;
+                stockBadge.classList.add('low-stock');
+            } else {
+                stockBadge.textContent = 'In Stock';
+            }
+
+            // Generate rating stars
+            const rating = getProductRating(product.id);
+            const ratingElement = document.getElementById('productRating');
+            const ratingText = document.getElementById('ratingText');
+            
+            ratingElement.innerHTML = generateRatingStars(rating);
+            ratingText.textContent = `(${rating}/5) - ${getReviewCount(product.id)} Reviews`;
+
+            // Generate size options
+            const sizeOptions = document.getElementById('sizeOptions');
+            sizeOptions.innerHTML = '';
+            product.availableSizes.forEach((size, index) => {
+                const sizeOption = document.createElement('label');
+                sizeOption.className = 'size-option';
+                sizeOption.innerHTML = `
+                    <input type="radio" name="size" value="${size}" ${index === 0 ? 'checked' : ''}>
+                    <span class="size-label">${size}</span>
+                `;
+                sizeOptions.appendChild(sizeOption);
+            });
+
+            // Generate color options
+            const colorOptions = document.getElementById('colorOptions');
+            colorOptions.innerHTML = '';
+            product.availableColors.forEach((color, index) => {
+                const colorOption = document.createElement('div');
+                colorOption.className = 'color-option';
+                colorOption.innerHTML = `
+                    <div class="color-swatch ${index === 0 ? 'selected' : ''}" 
+                         style="background-color: ${color.value}" 
+                         data-color-name="${color.name}">
+                    </div>
+                    <div class="color-name">${color.name}</div>
+                `;
+                colorOptions.appendChild(colorOption);
+            });
+        }
+
+        // Get product rating based on ID
+        function getProductRating(productId) {
+            const ratings = {
+                1: 4.5,
+                2: 4.0,
+                3: 3.0
+            };
+            return ratings[productId] || 4.0;
+        }
+
+        // Get review count based on ID
+        function getReviewCount(productId) {
+            const reviews = {
+                1: 128,
+                2: 96,
+                3: 64
+            };
+            return reviews[productId] || 50;
+        }
+
+        // Generate rating stars HTML
+        function generateRatingStars(rating) {
+            let stars = '';
+            const fullStars = Math.floor(rating);
+            const hasHalfStar = rating % 1 !== 0;
+            
+            for (let i = 0; i < fullStars; i++) {
+                stars += '<i class="fas fa-star"></i>';
+            }
+            
+            if (hasHalfStar) {
+                stars += '<i class="fas fa-star-half-alt"></i>';
+            }
+            
+            const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+            for (let i = 0; i < emptyStars; i++) {
+                stars += '<i class="far fa-star"></i>';
+            }
+            
+            return stars;
+        }
+
+        // Show add to cart popup
+        function showAddToCartPopup() {
+            const product = getSelectedProduct();
+            if (!product) return;
+
+            const selectedSize = document.querySelector('input[name="size"]:checked').value;
+            const selectedColor = document.querySelector('.color-swatch.selected').getAttribute('data-color-name');
+
+            // Check if product already in cart
+            if (isProductInCart(product.id, selectedSize, selectedColor)) {
+                Swal.fire({
+                    title: 'Product Already in Cart',
+                    html: `
+                        <div style="text-align: center;">
+                            <i class="fas fa-shopping-cart" style="font-size: 48px; color: #24393E; margin-bottom: 15px;"></i>
+                            <p><strong>${product.name}</strong> is already in your cart!</p>
+                            <p>Size: ${selectedSize} | Color: ${selectedColor}</p>
+                            <p class="text-muted" style="margin-top: 15px;">You can update the quantity from your cart page</p>
+                        </div>
+                    `,
+                    showCancelButton: true,
+                    confirmButtonText: 'Go to Cart',
+                    cancelButtonText: 'Continue Shopping',
+                    confirmButtonColor: '#24393E',
+                    cancelButtonColor: '#6c757d'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = 'ShoppingCart.html';
+                    }
+                });
+                return;
+            }
+
+            // Generate sizes options
+            const sizesOptions = product.availableSizes.map(size =>
+                `<div class="size-option ${size === selectedSize ? 'selected' : ''}" data-size="${size}">${size}</div>`
+            ).join('');
+
+            // Generate colors options
+            const colorsOptions = product.availableColors.map(color =>
+                `<div class="color-option ${color.name === selectedColor ? 'selected' : ''}" 
+                      data-color="${color.name}" data-color-value="${color.value}">
+                    <span class="color-preview" style="background-color: ${color.value}"></span>
+                    ${color.name}
+                </div>`
+            ).join('');
+
+            Swal.fire({
+                title: `Add to Cart - ${product.name}`,
+                html: `
+                    <div class="cart-popup-content">
+                        <div class="mb-3">
+                            <strong>Product:</strong> ${product.name}<br>
+                            <strong>Price:</strong> ${product.price} EGP
+                        </div>
+                        
+                        <div class="mb-3">
+                            <strong>Size:</strong>
+                            <div class="size-options">${sizesOptions}</div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <strong>Color:</strong>
+                            <div class="color-options">${colorsOptions}</div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <strong>Quantity:</strong>
+                            <div class="quantity-selector">
+                                <button class="quantity-btn minus">-</button>
+                                <input type="number" class="quantity-input" value="1" min="1" max="10">
+                                <button class="quantity-btn plus">+</button>
+                            </div>
+                        </div>
+                        
+                        <div class="price-summary">
+                            <strong>Price Summary:</strong><br>
+                            Unit Price: ${product.price} EGP<br>
+                            Quantity: <span id="quantityDisplay">1</span><br>
+                            <strong>Total: <span id="totalPrice">${product.price}</span> EGP</strong>
+                        </div>
+                    </div>
+                `,
+                showCancelButton: true,
+                confirmButtonText: 'Add to Cart',
+                cancelButtonText: 'Cancel',
+                confirmButtonColor: '#24393E',
+                cancelButtonColor: '#6c757d',
+                width: '500px',
+                didOpen: () => {
+                    // Size selection
+                    document.querySelectorAll('.size-option').forEach(option => {
+                        option.addEventListener('click', function () {
+                            document.querySelectorAll('.size-option').forEach(opt => opt.classList.remove('selected'));
+                            this.classList.add('selected');
+                        });
+                    });
+
+                    // Color selection
+                    document.querySelectorAll('.color-option').forEach(option => {
+                        option.addEventListener('click', function () {
+                            document.querySelectorAll('.color-option').forEach(opt => opt.classList.remove('selected'));
+                            this.classList.add('selected');
+                        });
+                    });
+
+                    // Quantity controls
+                    const quantityInput = document.querySelector('.quantity-input');
+                    const minusBtn = document.querySelector('.quantity-btn.minus');
+                    const plusBtn = document.querySelector('.quantity-btn.plus');
+                    const quantityDisplay = document.getElementById('quantityDisplay');
+                    const totalPrice = document.getElementById('totalPrice');
+
+                    function updateQuantity() {
+                        const quantity = parseInt(quantityInput.value);
+                        quantityDisplay.textContent = quantity;
+                        totalPrice.textContent = (product.price * quantity).toFixed(0);
+                    }
+
+                    minusBtn.addEventListener('click', () => {
+                        if (quantityInput.value > 1) {
+                            quantityInput.value = parseInt(quantityInput.value) - 1;
+                            updateQuantity();
+                        }
+                    });
+
+                    plusBtn.addEventListener('click', () => {
+                        if (quantityInput.value < 10) {
+                            quantityInput.value = parseInt(quantityInput.value) + 1;
+                            updateQuantity();
+                        }
+                    });
+
+                    quantityInput.addEventListener('change', updateQuantity);
+                    updateQuantity();
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    addToCart(product);
+                }
+            });
+        }
+
+        // Add to cart function
+        function addToCart(product) {
+            const selectedSize = document.querySelector('.size-option.selected').dataset.size;
+            const selectedColor = document.querySelector('.color-option.selected').dataset.color;
+            const selectedColorValue = document.querySelector('.color-option.selected').dataset.colorValue;
+            const quantity = parseInt(document.querySelector('.quantity-input').value);
+            const totalPrice = product.price * quantity;
+
+            // Get current user
+            const currentUser = JSON.parse(localStorage.getItem('healwear_current_user'));
+
+            if (!currentUser) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Login Required',
+                    text: 'Please login first to add items to cart',
+                    confirmButtonColor: '#24393E',
+                    confirmButtonText: 'Go to Login'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = 'login.html';
+                    }
+                });
+                return;
+            }
+
+            // Check if product already exists in cart
+            if (isProductInCart(product.id, selectedSize, selectedColor)) {
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Product Already in Cart',
+                    html: `
+                        <div style="text-align: center;">
+                            <p><strong>${product.name}</strong> is already in your cart</p>
+                            <p>Size: ${selectedSize} | Color: ${selectedColor}</p>
+                            <p class="text-muted">You can update the quantity from your cart</p>
+                        </div>
+                    `,
+                    showCancelButton: true,
+                    confirmButtonText: 'View Cart',
+                    cancelButtonText: 'Continue Shopping',
+                    confirmButtonColor: '#24393E',
+                    cancelButtonColor: '#6c757d'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = 'ShoppingCart.html';
+                    }
+                });
+                return;
+            }
+
+            // Create cart item
+            const cartItem = {
+                id: Date.now(),
+                productId: product.id,
+                name: product.name,
+                price: product.price,
+                size: selectedSize,
+                color: selectedColor,
+                colorValue: selectedColorValue,
+                quantity: quantity,
+                totalPrice: totalPrice,
+                image: product.image,
+                addedAt: new Date().toISOString()
+            };
+
+            // Add to user's cart
+            if (!currentUser.cart) {
+                currentUser.cart = [];
+            }
+
+            currentUser.cart.push(cartItem);
+
+            // Update user in localStorage
+            const allUsers = JSON.parse(localStorage.getItem('healwear_users')) || [];
+            const userIndex = allUsers.findIndex(u => u.id === currentUser.id);
+            if (userIndex !== -1) {
+                allUsers[userIndex] = currentUser;
+                localStorage.setItem('healwear_users', JSON.stringify(allUsers));
+                localStorage.setItem('healwear_current_user', JSON.stringify(currentUser));
+            }
+
             Swal.fire({
                 icon: 'success',
                 title: 'Added to Cart!',
                 html: `
-                    <div style="text-align: left;">
-                        <p><strong>Product:</strong> Professional Medical Scrubs</p>
-                        <p><strong>Size:</strong> ${size}</p>
-                        <p><strong>Color:</strong> ${color}</p>
-                        <p><strong>Quantity:</strong> ${quantity}</p>
-                        <p><strong>Total:</strong> ${350 * parseInt(quantity)} EGP</p>
+                    <div style="text-align: center;">
+                        <p><strong>${product.name}</strong> has been added to your cart</p>
+                        <p>Size: ${selectedSize} | Color: ${selectedColor}</p>
+                        <p>Quantity: ${quantity} | Total: ${totalPrice} EGP</p>
                     </div>
                 `,
-                confirmButtonColor: '#2E5B8D',
-                confirmButtonText: 'Continue Shopping',
-                showCancelButton: true,
-                cancelButtonText: 'View Cart'
-            }).then((result) => {
-                if (result.dismiss === Swal.DismissReason.cancel) {
-                    window.location.href = 'ShoppingCart.html';
+                confirmButtonColor: '#24393E',
+                confirmButtonText: 'Continue Shopping'
+            });
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function () {
+            loadProductData();
+
+            // Color selection
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.color-option')) {
+                    const colorOption = e.target.closest('.color-option');
+                    // Remove selected class from all colors
+                    document.querySelectorAll('.color-swatch').forEach(swatch => {
+                        swatch.classList.remove('selected');
+                    });
+                    // Add selected class to clicked color
+                    colorOption.querySelector('.color-swatch').classList.add('selected');
                 }
             });
-        });
 
-        // Prevent typing in quantity input
-        document.querySelector('.quantity-input').addEventListener('keydown', function(e) {
-            e.preventDefault();
+            // Size selection
+            document.addEventListener('change', function(e) {
+                if (e.target.name === 'size') {
+                    document.querySelectorAll('.size-label').forEach(label => {
+                        label.classList.remove('selected');
+                    });
+                    e.target.nextElementSibling.classList.add('selected');
+                }
+            });
+
+            // Add to cart button - show popup
+            document.getElementById('addToCartBtn').addEventListener('click', function() {
+                const product = getSelectedProduct();
+                if (product && product.stock > 0) {
+                    showAddToCartPopup();
+                }
+            });
         });
     </script>
 </body>

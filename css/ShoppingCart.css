@@ -1,0 +1,126 @@
+/* cart */
+.navbar-brand span {
+    font-family: 'Playfair Display', serif !important;
+    background-color: #24393E !important;
+}
+
+.navbar-brand span:first-child {
+    color: #E8D26E !important;
+}
+
+.navbar-brand span:last-child {
+    color: #E8D26E !important;
+}
+
+.navbar {
+    background-color: #24393E !important;
+}
+
+.cart-container {
+    background: #2d2d2d;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    border: 1px solid #404040;
+}
+
+.cart-header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--medical-blue);
+}
+
+.cart-header h1 {
+    font-size: 36px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 10px;
+    font-family: 'Playfair Display', serif;
+}
+
+.cart-table {
+    background: #363636;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.cart-table th {
+    background: var(--medical-blue);
+    color: white;
+    font-weight: bold;
+    border: none;
+    padding: 15px;
+}
+
+.cart-table td {
+    background: #2d2d2d;
+    color: #e0e0e0;
+    border-color: #404040;
+    padding: 15px;
+    vertical-align: middle;
+}
+
+.cart-summary {
+    background: #363636;
+    padding: 25px;
+    border-radius: 10px;
+    margin-top: 30px;
+    border: 1px solid #404040;
+}
+
+.quantity-control input {
+    width: 80px;
+    text-align: center;
+    background: #2d2d2d;
+    border: 1px solid #404040;
+    color: white;
+}
+
+.empty-cart {
+    text-align: center;
+    padding: 60px 20px;
+    color: #b0b0b0;
+}
+
+.empty-cart i {
+    font-size: 64px;
+    color: var(--medical-blue);
+    margin-bottom: 20px;
+}
+
+.color-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.color-preview {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #404040;
+}
+
+.form-select {
+    background: #2d2d2d;
+    border: 1px solid #404040;
+    color: white;
+}
+
+.form-select:focus {
+    background: #2d2d2d;
+    border-color: var(--medical-blue);
+    color: white;
+}
+
+
+
+
+
+
+
+
+
+
+

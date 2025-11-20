@@ -1,0 +1,258 @@
+        body {
+            background-color: #1a1a1a;
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        .register-container {
+            max-width: 600px;
+            width: 100%;
+            background: #2d2d2d;
+            padding: 60px 50px;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+            border: 1px solid #404040;
+            position: relative;
+            overflow: hidden;
+            margin-top: 40px;
+        }
+
+        .register-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, var(--medical-blue) 0%, var(--medical-dark) 100%);
+        }
+
+        .register-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .brand-logo {
+            display: inline-flex;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--medical-blue) 0%, var(--medical-dark) 100%);
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(36, 57, 62, 0.4);
+        }
+
+        .brand-logo i {
+            font-size: 50px;
+            color: white;
+        }
+
+        .register-header h1 {
+            font-size: 42px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .welcome-text {
+            color: #b0b0b0;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: white;
+            margin-bottom: 12px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .input-icon {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .input-icon i {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--medical-blue);
+            z-index: 2;
+            font-size: 20px;
+        }
+
+        .form-control {
+            border: 2px solid #404040;
+            border-radius: 12px;
+            padding: 18px 18px 18px 60px;
+            background-color: #363636;
+            color: white;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            height: 60px;
+        }
+
+        .form-control::placeholder {
+            color: #b0b0b0;
+            opacity: 1;
+        }
+
+        .form-control:focus {
+            border-color: var(--medical-blue);
+            box-shadow: 0 0 0 0.3rem rgba(36, 57, 62, 0.25);
+            background-color: #2d2d2d;
+            color: white;
+        }
+
+        .btn-register {
+            background: linear-gradient(135deg, var(--medical-blue) 0%, var(--medical-dark) 100%);
+            border: none;
+            color: white;
+            font-weight: bold;
+            padding: 20px;
+            font-size: 18px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 30px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .btn-register:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(36, 57, 62, 0.5);
+            background: linear-gradient(135deg, var(--medical-light) 0%, var(--medical-blue) 100%);
+        }
+
+        .register-footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid #404040;
+        }
+
+        .register-footer a {
+            color: var(--gold-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 16px;
+        }
+
+        .register-footer a:hover {
+            color: var(--medical-light);
+            text-decoration: none;
+        }
+
+        .form-check-input:checked {
+            background-color: var(--medical-blue);
+            border-color: var(--medical-blue);
+        }
+
+        .form-check-label {
+            color: #b0b0b0;
+            font-size: 15px;
+        }
+
+        .terms-link {
+            color: var(--gold-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .terms-link:hover {
+            color: var(--medical-light);
+            text-decoration: underline;
+        }
+
+        .password-strength {
+            height: 6px;
+            background: #404040;
+            border-radius: 3px;
+            margin-top: 8px;
+            overflow: hidden;
+        }
+
+        .password-strength-bar {
+            height: 100%;
+            width: 0%;
+            transition: all 0.3s ease;
+            border-radius: 3px;
+        }
+
+        .strength-weak {
+            background: #dc3545;
+            width: 33%;
+        }
+
+        .strength-medium {
+            background: #ffc107;
+            width: 66%;
+        }
+
+        .strength-strong {
+            background: #28a745;
+            width: 100%;
+        }
+
+        /* Animation for form elements */
+        .input-icon {
+            animation: slideUp 0.5s ease forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .input-icon:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .input-icon:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .input-icon:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .input-icon:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Row styling for name fields */
+        .name-row {
+            display: flex;
+            gap: 20px;
+        }
+
+        .name-row .input-icon {
+            flex: 1;
+        }
+
+        @media (max-width: 768px) {
+            .register-container {
+                padding: 40px 30px;
+                margin-top: 20px;
+            }
+
+            .name-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
