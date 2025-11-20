@@ -1,0 +1,47 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Professional Medical Scrubs",
+      "price": 350,
+      "type": "Medical Scrubs",
+      "availableSizes": ["S", "M", "L", "XL"],
+      "availableColors": [
+        {"name": "Navy Blue", "value": "#2E5B8D"},
+        {"name": "Sky Blue", "value": "#4A7BB6"}
+      ],
+      "stock": 50,
+      "description": "Premium medical scrubs designed for healthcare professionals",
+      "image": "../imges/outfits/outfit1.webp"
+    },
+    {
+      "id": 2,
+      "name": "Surgical Scrubs Set", 
+      "price": 420,
+      "type": "Surgical Scrubs",
+      "availableSizes": ["M", "L", "XL"],
+      "availableColors": [
+        {"name": "Royal Blue", "value": "#4169E1"},
+        {"name": "Blue", "value": "#4169E1"},
+        {"name": "Teal", "value": "#008080"}
+      ],
+      "stock": 30,
+      "description": "Advanced moisture-wicking technology for operating rooms",
+      "image": "../imges/outfits/oufit2.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Nursing Uniform Collection",
+      "price": 380,
+      "type": "Nursing Uniform", 
+      "availableSizes": ["S", "M", "L"],
+      "availableColors": [
+        {"name": "White", "value": "#FFFFFF"},
+        {"name": "Light Blue", "value": "#ADD8E6"}
+      ],
+      "stock": 25,
+      "description": "Stylish and functional uniforms for nursing professionals",
+      "image": "../imges/outfits/outfit3.jpg"
+    }
+  ]
+}

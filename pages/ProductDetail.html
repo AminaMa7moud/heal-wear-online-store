@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - HEAL WEAR</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/home.css">
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Sweet Alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <style>
+        .product-images-container {
+            height: 100%;
+        }
+        
+        .carousel-inner {
+            height: 700px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .carousel-item {
+            height: 100%;
+        }
+        
+        .carousel-item img {
+            height: 100%;
+            object-fit: cover;
+            width: 100%;
+        }
+        
+        .product-info-container {
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .quantity-buttons {
+            display: flex;
+            align-items: center;
+            border: 2px solid var(--medical-blue);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .quantity-btn {
+            background: var(--medical-blue);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .quantity-btn:hover {
+            background: var(--medical-dark);
+        }
+        
+        .quantity-input {
+            width: 60px;
+            height: 40px;
+            border: none;
+            text-align: center;
+            font-weight: bold;
+            background: white;
+            color: var(--dark-text);
+        }
+        
+        .color-options, .size-options {
+            margin: 15px 0;
+        }
+        
+        .color-option, .size-option {
+            display: inline-block;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        
+        .color-swatch {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .color-swatch.selected {
+            border-color: var(--medical-blue);
+            transform: scale(1.1);
+        }
+        
+        .color-swatch.selected::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        .size-option input {
+            display: none;
+        }
+        
+        .size-label {
+            display: inline-block;
+            padding: 8px 16px;
+            border: 2px solid #404040;
+            border-radius: 6px;
+            background: #363636;
+            color: #b0b0b0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .size-option input:checked + .size-label {
+            border-color: var(--medical-blue);
+            background: var(--medical-blue);
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        .add-to-cart-btn {
+            background: linear-gradient(135deg, var(--medical-blue) 0%, var(--medical-dark) 100%);
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            width: 100%;
+        }
+        
+        .add-to-cart-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(46, 91, 141, 0.4);
+        }
+        
+        .product-features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #b0b0b0;
+        }
+        
+        .feature-item i {
+            color: var(--medical-blue);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark my-2 ">
+        <div class="container-fluid">
+            <!-- Left Section (Brand) -->
+            <a class="navbar-brand me-5">
+                <span class="h1 text-uppercase text-white bg-medical-blue px-2 rounded-start">Heal</span>
+                <span class="h1 text-uppercase text-medical-blue bg-white px-2 rounded-end">Wear</span>
+            </a>
+
+            <!-- toggler with target id  -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- collapsable content -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-5">
+                    <li class="nav-item"><a href="../index.html" class="nav-link text-white active nav-hover">Home</a></li>
+                    <li class="nav-item"><a href="../index.html" class="nav-link text-white nav-hover">Products</a></li>
+                    <li class="nav-item"><a href="contactUs.html" class="nav-link text-white nav-hover">Contact Us</a></li>
+                </ul>
+
+                <a href="ShoppingCart.html" id="cart" title="Shopping Cart" class="nav-icon">
+                    <i class="fas fa-shopping-cart me-4 text-white"></i>
+                </a>
+
+                <a href="login.html" id="login" title="log in" class="nav-icon">
+                    <i class="fa-solid fa-user me-4 text-white"></i>
+                </a>
+
+                <a href="#" id="logout" title="log out" class="logout nav-icon">
+                    <i class="fa-solid fa-right-to-bracket me-2 text-white"></i>
+                </a>
+            </div>
+        </div>
+    </nav>
+    <!-- end of Navigation Bar -->
+
+    <!-- Product Details -->
+    <div class="container-fluid pb-5 mt-4">
+        <div class="row px-xl-5">
+            <!-- Product Images -->
+            <div class="col-lg-5 mb-4">
+                <div class="product-images-container">
+                    <div id="product-carousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img class="d-block w-100" src="../imges/outfits/1_1.JPG" alt="Medical Scrubs">
+                            </div>
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="../imges/outfits/1_2.JPG" alt="Medical Scrubs">
+                            </div>
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="../imges/outfits/1_3.JPG" alt="Medical Scrubs">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#product-carousel"
+                            data-bs-slide="prev">
+                            <i class="fa fa-2x fa-angle-left text-white"></i>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#product-carousel"
+                            data-bs-slide="next">
+                            <i class="fa fa-2x fa-angle-right text-white"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Info -->
+            <div class="col-lg-7 mb-4">
+                <div class="h-100 p-4 rounded product-detail-card product-info-container">
+                    <div>
+                        <h3 class="text-uppercase fw-bold text-medical-blue mb-3">Professional Medical Scrubs</h3>
+
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="text-medical-blue me-2">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <small class="text-muted">(4.5/5) - 128 Reviews</small>
+                        </div>
+
+                        <h3 class="fw-semi-bold mb-4 text-medical-blue">350 EGP</h3>
+
+                        <p class="mb-4 text-muted">
+                            Premium medical scrubs designed for healthcare professionals. Features breathable fabric, 
+                            multiple functional pockets, and comfortable fit perfect for long shifts in medical environments.
+                        </p>
+                    </div>
+
+                    <div>
+                        <!-- Size Selection -->
+                        <div class="size-options">
+                            <strong class="text-medical-blue me-3">Size:</strong>
+                            <div class="d-flex flex-wrap mt-2">
+                                <label class="size-option">
+                                    <input type="radio" name="size" value="S" checked>
+                                    <span class="size-label">S</span>
+                                </label>
+                                <label class="size-option">
+                                    <input type="radio" name="size" value="M">
+                                    <span class="size-label">M</span>
+                                </label>
+                                <label class="size-option">
+                                    <input type="radio" name="size" value="L">
+                                    <span class="size-label">L</span>
+                                </label>
+                                <label class="size-option">
+                                    <input type="radio" name="size" value="XL">
+                                    <span class="size-label">XL</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Color Selection -->
+                        <div class="color-options">
+                            <strong class="text-medical-blue me-3">Color:</strong>
+                            <div class="d-flex flex-wrap mt-2">
+                                <div class="color-option" data-color="Navy Blue">
+                                    <div class="color-swatch selected" style="background-color: #2E5B8D;"></div>
+                                </div>
+                                <div class="color-option" data-color="Sky Blue">
+                                    <div class="color-swatch" style="background-color: #4A7BB6;"></div>
+                                </div>
+                                <div class="color-option" data-color="Green">
+                                    <div class="color-swatch" style="background-color: #198754;"></div>
+                                </div>
+                                <div class="color-option" data-color="Gray">
+                                    <div class="color-swatch" style="background-color: #6c757d;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Quantity Selection -->
+                        <div class="quantity-selector">
+                            <strong class="text-medical-blue">Quantity:</strong>
+                            <div class="quantity-buttons">
+                                <button class="quantity-btn minus">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <input type="text" class="quantity-input" value="1" min="1" max="10">
+                                <button class="quantity-btn plus">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Add to Cart Button -->
+                        <button class="add-to-cart-btn">
+                            <i class="fa fa-shopping-cart me-2"></i>Add To Cart
+                        </button>
+
+                        <!-- Product Features -->
+                        <div class="product-features-grid">
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Premium Cotton</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Machine Washable</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Multiple Pockets</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Comfort Fit</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Description -->
+        <div class="row px-xl-5 mt-4">
+            <div class="col-12">
+                <div class="p-4 rounded product-detail-card">
+                    <h4 class="mb-4 text-medical-blue">Product Description</h4>
+                    <p class="text-muted">
+                        Our Professional Medical Scrubs are specifically designed for healthcare professionals 
+                        who demand both comfort and functionality. Crafted from premium quality cotton blend fabric, 
+                        these scrubs offer exceptional breathability and durability for long shifts.
+                    </p>
+                    <p class="text-muted">
+                        Featuring strategically placed pockets for medical instruments and personal items, 
+                        these scrubs combine practical design with professional appearance. The comfortable 
+                        fit allows for maximum mobility while maintaining a polished look throughout your workday.
+                    </p>
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <table class="table table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Material Composition</strong></td>
+                                        <td>65% Cotton, 35% Polyester</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Fabric Weight</strong></td>
+                                        <td>180 GSM</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Care Instructions</strong></td>
+                                        <td>Machine wash 40°C, Tumble dry low</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Available Sizes</strong></td>
+                                        <td>S, M, L, XL</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-6">
+                            <table class="table table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Pockets</strong></td>
+                                        <td>4 Functional Pockets</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Closure</strong></td>
+                                        <td>Elastic Waist with Drawstring</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Color Fastness</strong></td>
+                                        <td>Excellent</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Origin</strong></td>
+                                        <td>Made in Egypt</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-white mt-5 pt-5">
+        <div class="row px-xl-5 pt-5">
+            <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
+                <h5 class="text-uppercase mb-4">Contact Us</h5>
+                <p class="mb-4">
+                    Premium medical scrubs for healthcare professionals. Quality, comfort, and style for your medical practice.
+                </p>
+                <p class="mb-2"><i class="fa fa-envelope text-medical-blue me-2"></i> support@healwear.com</p>
+                <p class="mb-1"><i class="fa fa-phone-alt text-medical-blue me-2"></i>01126617256</p>
+                <p class="mb-1"><i class="fa fa-phone-alt text-medical-blue me-2"></i>+20 11 40243393</p>
+                <p class="mb-0"><i class="fab fa-whatsapp text-medical-blue me-2"></i>01270018749</p>
+            </div>
+
+            <div class="col-lg-8 col-md-12">
+                <div class="row">
+                    <div class="col-md-4 mb-5">
+                        <h5 class="text-uppercase mb-4">Quick Shop</h5>
+                        <div class="d-flex flex-column justify-content-start align-items-start">
+                            <a class="text-white mb-2 footer-link" href="../index.html"><i
+                                    class="fa fa-angle-right text-medical-blue mr-2 me-2"></i>Home</a>
+                            <a class="text-white mb-2 footer-link" href="ShoppingCart.html"><i
+                                    class="fa fa-angle-right text-medical-blue mr-2 me-2"></i>Shopping Cart</a>
+                            <a class="text-white mb-2 footer-link" href="checkout.html"><i
+                                    class="fa fa-angle-right text-medical-blue mr-2 me-2"></i>Checkout</a>
+                            <a class="text-white footer-link" href="contactUs.html">
+                                <i class="fa fa-angle-right text-medical-blue mr-2 me-2"></i>Contact Us</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-5">
+                        <h5 class="text-uppercase mb-4">Follow Us</h5>
+                        <p>Stay updated with our latest medical scrubs collections and healthcare fashion trends.</p>
+                        <div>
+                            <h6 class="text-uppercase mt-4 mb-3">Connect With Us</h6>
+                            <div class="d-flex">
+                                <a href="https://www.facebook.com/share/1G9T8FU8yA/" class="social-icon ms-2" target="_blank">
+                                    <i class="fab fa-facebook-f mr-2 p-2"></i>
+                                </a>
+                                <a href="https://www.instagram.com/healwear9?igsh=MTFrOWV2aWk2OHllZw==" class="social-icon ms-2" target="_blank">
+                                    <i class="fab fa-instagram mr-2 p-2"></i>
+                                </a>
+                                <a href="https://www.tiktok.com/@user24154977333434?_r=1&_t=ZS-91VpRGPdtpv" class="social-icon ms-2" target="_blank">
+                                    <i class="fab fa-tiktok mr-2 p-2"></i>
+                                </a>
+                                <a href="https://wa.me/message/B7TX3HKZ365FG1" class="social-icon ms-2" target="_blank">
+                                    <i class="fab fa-whatsapp mr-2 p-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row border-top mx-xl-5 py-4" style="border-color: rgba(255, 255, 255, 0.1) !important;">
+                <div class="col-md-6 px-xl-0">
+                    <p class="mb-md-0 text-center text-md-left">
+                        &copy; 2024 <a class="text-medical-blue" href="#">Heal Wear</a>. All Rights Reserved. 
+                        <span class="d-block d-md-inline">MEDICAL SCRUBS</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+    <!-- Custom JS -->
+    <script>
+        // Quantity buttons functionality
+        document.querySelector('.quantity-btn.plus').addEventListener('click', function () {
+            const input = document.querySelector('.quantity-input');
+            if (parseInt(input.value) < 10) {
+                input.value = parseInt(input.value) + 1;
+            }
+        });
+
+        document.querySelector('.quantity-btn.minus').addEventListener('click', function () {
+            const input = document.querySelector('.quantity-input');
+            if (parseInt(input.value) > 1) {
+                input.value = parseInt(input.value) - 1;
+            }
+        });
+
+        // Color selection
+        document.querySelectorAll('.color-option').forEach(option => {
+            option.addEventListener('click', function() {
+                // Remove selected class from all colors
+                document.querySelectorAll('.color-swatch').forEach(swatch => {
+                    swatch.classList.remove('selected');
+                });
+                // Add selected class to clicked color
+                this.querySelector('.color-swatch').classList.add('selected');
+            });
+        });
+
+        // Add to cart functionality
+        document.querySelector('.add-to-cart-btn').addEventListener('click', function() {
+            const quantity = document.querySelector('.quantity-input').value;
+            const size = document.querySelector('input[name="size"]:checked').value;
+            const color = document.querySelector('.color-swatch.selected').parentElement.dataset.color;
+            
+            Swal.fire({
+                icon: 'success',
+                title: 'Added to Cart!',
+                html: `
+                    <div style="text-align: left;">
+                        <p><strong>Product:</strong> Professional Medical Scrubs</p>
+                        <p><strong>Size:</strong> ${size}</p>
+                        <p><strong>Color:</strong> ${color}</p>
+                        <p><strong>Quantity:</strong> ${quantity}</p>
+                        <p><strong>Total:</strong> ${350 * parseInt(quantity)} EGP</p>
+                    </div>
+                `,
+                confirmButtonColor: '#2E5B8D',
+                confirmButtonText: 'Continue Shopping',
+                showCancelButton: true,
+                cancelButtonText: 'View Cart'
+            }).then((result) => {
+                if (result.dismiss === Swal.DismissReason.cancel) {
+                    window.location.href = 'ShoppingCart.html';
+                }
+            });
+        });
+
+        // Prevent typing in quantity input
+        document.querySelector('.quantity-input').addEventListener('keydown', function(e) {
+            e.preventDefault();
+        });
+    </script>
+</body>
+
+</html>

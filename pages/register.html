@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - HEAL WEAR</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Cormorant+Garamond:wght@300;400;500&family=Cormorant+Infant:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/home.css">
+    
+    <style>
+        body {
+            background-color: #1a1a1a;
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 40px 20px;
+        }
+        .register-container {
+            max-width: 600px;
+            width: 100%;
+            background: #2d2d2d;
+            padding: 60px 50px;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+            border: 1px solid #404040;
+            position: relative;
+            overflow: hidden;
+            margin-top: 40px;
+        }
+        .register-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, var(--medical-blue) 0%, var(--medical-dark) 100%);
+        }
+        .register-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .brand-logo {
+            display: inline-flex;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--medical-blue) 0%, var(--medical-dark) 100%);
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(36, 57, 62, 0.4);
+        }
+        .brand-logo i {
+            font-size: 50px;
+            color: white;
+        }
+        .register-header h1 {
+            font-size: 42px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            font-family: 'Playfair Display', serif;
+        }
+        .welcome-text {
+            color: #b0b0b0;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        .form-label {
+            font-weight: 600;
+            color: white;
+            margin-bottom: 12px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .input-icon {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        .input-icon i {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--medical-blue);
+            z-index: 2;
+            font-size: 20px;
+        }
+        .form-control {
+            border: 2px solid #404040;
+            border-radius: 12px;
+            padding: 18px 18px 18px 60px;
+            background-color: #363636;
+            color: white;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            height: 60px;
+        }
+        .form-control::placeholder {
+            color: #b0b0b0;
+            opacity: 1;
+        }
+        .form-control:focus {
+            border-color: var(--medical-blue);
+            box-shadow: 0 0 0 0.3rem rgba(36, 57, 62, 0.25);
+            background-color: #2d2d2d;
+            color: white;
+        }
+        .btn-register {
+            background: linear-gradient(135deg, var(--medical-blue) 0%, var(--medical-dark) 100%);
+            border: none;
+            color: white;
+            font-weight: bold;
+            padding: 20px;
+            font-size: 18px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 30px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .btn-register:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(36, 57, 62, 0.5);
+            background: linear-gradient(135deg, var(--medical-light) 0%, var(--medical-blue) 100%);
+        }
+        .register-footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid #404040;
+        }
+        .register-footer a {
+            color: var(--gold-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 16px;
+        }
+        .register-footer a:hover {
+            color: var(--medical-light);
+            text-decoration: none;
+        }
+        .form-check-input:checked {
+            background-color: var(--medical-blue);
+            border-color: var(--medical-blue);
+        }
+        .form-check-label {
+            color: #b0b0b0;
+            font-size: 15px;
+        }
+        .terms-link {
+            color: var(--gold-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .terms-link:hover {
+            color: var(--medical-light);
+            text-decoration: underline;
+        }
+        .password-strength {
+            height: 6px;
+            background: #404040;
+            border-radius: 3px;
+            margin-top: 8px;
+            overflow: hidden;
+        }
+        .password-strength-bar {
+            height: 100%;
+            width: 0%;
+            transition: all 0.3s ease;
+            border-radius: 3px;
+        }
+        .strength-weak { background: #dc3545; width: 33%; }
+        .strength-medium { background: #ffc107; width: 66%; }
+        .strength-strong { background: #28a745; width: 100%; }
+
+        /* Animation for form elements */
+        .input-icon {
+            animation: slideUp 0.5s ease forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .input-icon:nth-child(1) { animation-delay: 0.1s; }
+        .input-icon:nth-child(2) { animation-delay: 0.2s; }
+        .input-icon:nth-child(3) { animation-delay: 0.3s; }
+        .input-icon:nth-child(4) { animation-delay: 0.4s; }
+        
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Row styling for name fields */
+        .name-row {
+            display: flex;
+            gap: 20px;
+        }
+        .name-row .input-icon {
+            flex: 1;
+        }
+
+        @media (max-width: 768px) {
+            .register-container {
+                padding: 40px 30px;
+                margin-top: 20px;
+            }
+            .name-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="register-container">
+        <!-- Header -->
+        <div class="register-header">
+            <div class="brand-logo">
+                <i class="fas fa-user-plus"></i>
+            </div>
+            <h1>HEAL WEAR</h1>
+            <p class="welcome-text">Create your account and join our medical community</p>
+        </div>
+
+        <!-- Register Form -->
+        <form id="registerForm">
+            <!-- Name Row -->
+            <div class="name-row">
+                <div class="input-icon">
+                    <i class="fas fa-user"></i>
+                    <input type="text" class="form-control" id="firstName" placeholder="First Name" required>
+                </div>
+                <div class="input-icon">
+                    <i class="fas fa-user"></i>
+                    <input type="text" class="form-control" id="lastName" placeholder="Last Name" required>
+                </div>
+            </div>
+
+            <!-- Email -->
+            <div class="input-icon">
+                <i class="fas fa-envelope"></i>
+                <input type="email" class="form-control" id="email" placeholder="Email Address" required>
+            </div>
+
+            <!-- Phone -->
+            <div class="input-icon">
+                <i class="fas fa-phone"></i>
+                <input type="tel" class="form-control" id="phone" placeholder="Phone Number" required>
+            </div>
+
+            <!-- Password -->
+            <div class="input-icon">
+                <i class="fas fa-lock"></i>
+                <input type="password" class="form-control" id="password" placeholder="Create Password" required minlength="6">
+                <div class="password-strength">
+                    <div class="password-strength-bar" id="passwordStrength"></div>
+                </div>
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="input-icon">
+                <i class="fas fa-lock"></i>
+                <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" required>
+            </div>
+
+            <!-- Terms and Conditions -->
+            <div class="form-check mb-4">
+                <input class="form-check-input" type="checkbox" id="agreeTerms" required>
+                <label class="form-check-label" for="agreeTerms">
+                    I agree to the <a href="#" class="terms-link">Terms & Conditions</a> and <a href="#" class="terms-link">Privacy Policy</a>
+                </label>
+            </div>
+
+            <!-- Register Button -->
+            <button type="submit" class="btn btn-register">
+                <i class="fas fa-user-plus me-2"></i>Create Account
+            </button>
+        </form>
+
+        <!-- Footer -->
+        <div class="register-footer">
+            <p style="color: #b0b0b0; margin-bottom: 15px; font-size: 16px;">
+                Already have an account? 
+                <a href="login.html" style="font-weight: bold; color: var(--gold-color);">Sign In</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- SweetAlert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <!-- Custom JS -->
+    <script>
+        // Save user to localStorage
+        function saveUserToLocalStorage(userData) {
+            // Get existing users or initialize empty array
+            const existingUsers = JSON.parse(localStorage.getItem('healwear_users')) || [];
+            
+            // Check if email already exists
+            const emailExists = existingUsers.some(user => user.email === userData.email);
+            if (emailExists) {
+                return { success: false, message: 'Email already exists' };
+            }
+            
+            // Add new user
+            existingUsers.push(userData);
+            localStorage.setItem('healwear_users', JSON.stringify(existingUsers));
+            return { success: true, message: 'User registered successfully' };
+        }
+
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const agreeTerms = document.getElementById('agreeTerms').checked;
+
+            // Validation
+            if (password !== confirmPassword) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Password Mismatch',
+                    text: 'Passwords do not match. Please try again.',
+                    confirmButtonColor: '#24393E'
+                });
+                return;
+            }
+
+            if (!agreeTerms) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Terms Required',
+                    text: 'Please agree to the Terms & Conditions.',
+                    confirmButtonColor: '#24393E'
+                });
+                return;
+            }
+
+            // Create user object
+            const userData = {
+                id: Date.now(),
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                phone: phone,
+                password: password, // In real app, this should be hashed
+                createdAt: new Date().toISOString(),
+                cart: [] // Initialize empty cart for the user
+            };
+
+            // Save user to localStorage
+            const result = saveUserToLocalStorage(userData);
+            
+            if (result.success) {
+                // Also save current logged in user
+                localStorage.setItem('healwear_current_user', JSON.stringify(userData));
+                
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Welcome to HEAL WEAR!',
+                    html: `
+                        <div style="text-align: center;">
+                            <i class="fas fa-check-circle" style="font-size: 48px; color: #28a745; margin-bottom: 15px;"></i>
+                            <p style="color: #333; margin-bottom: 10px;">Account created successfully!</p>
+                            <p style="color: #666; font-size: 14px; margin-bottom: 0;">Welcome to our medical community, ${firstName}!</p>
+                        </div>
+                    `,
+                    confirmButtonColor: '#24393E',
+                    confirmButtonText: 'Continue Shopping'
+                }).then((result) => {
+                    window.location.href = '../index.html';
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Registration Failed',
+                    text: result.message,
+                    confirmButtonColor: '#24393E'
+                });
+            }
+        });
+
+        // Password strength indicator
+        document.getElementById('password').addEventListener('input', function() {
+            const password = this.value;
+            const strengthBar = document.getElementById('passwordStrength');
+            
+            if (password.length === 0) {
+                strengthBar.className = 'password-strength-bar';
+                strengthBar.style.width = '0%';
+            } else if (password.length < 6) {
+                strengthBar.className = 'password-strength-bar strength-weak';
+            } else if (password.length < 8) {
+                strengthBar.className = 'password-strength-bar strength-medium';
+            } else {
+                // Check for strong password (mix of characters)
+                const hasUpperCase = /[A-Z]/.test(password);
+                const hasLowerCase = /[a-z]/.test(password);
+                const hasNumbers = /\d/.test(password);
+                const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+                
+                if (hasUpperCase && hasLowerCase && hasNumbers && hasSpecialChar) {
+                    strengthBar.className = 'password-strength-bar strength-strong';
+                } else {
+                    strengthBar.className = 'password-strength-bar strength-medium';
+                }
+            }
+        });
+
+        // Phone number formatting
+        document.getElementById('phone').addEventListener('input', function(e) {
+            this.value = this.value.replace(/[^\d+]/g, '');
+        });
+
+        // Interactive effects
+        document.querySelectorAll('.form-control').forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.querySelector('i').style.color = 'var(--medical-light)';
+                this.style.borderColor = 'var(--medical-blue)';
+            });
+            
+            input.addEventListener('blur', function() {
+                this.parentElement.querySelector('i').style.color = 'var(--medical-blue)';
+                if (!this.value) {
+                    this.style.borderColor = '#404040';
+                }
+            });
+        });
+
+        // Terms link handler
+        document.querySelectorAll('.terms-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                Swal.fire({
+                    title: 'Terms & Conditions',
+                    html: `
+                        <div style="text-align: left; max-height: 300px; overflow-y: auto;">
+                            <h6>Welcome to HEAL WEAR!</h6>
+                            <p>By creating an account, you agree to our terms and conditions regarding:</p>
+                            <ul>
+                                <li>Privacy and data protection</li>
+                                <li>Order processing and delivery</li>
+                                <li>Returns and refunds policy</li>
+                                <li>Account security</li>
+                            </ul>
+                            <p>For full details, please contact our support team.</p>
+                        </div>
+                    `,
+                    confirmButtonColor: '#24393E',
+                    confirmButtonText: 'I Understand'
+                });
+            });
+        });
+
+        // Confirm password validation
+        document.getElementById('confirmPassword').addEventListener('blur', function() {
+            const password = document.getElementById('password').value;
+            const confirmPassword = this.value;
+            
+            if (confirmPassword && password !== confirmPassword) {
+                this.style.borderColor = '#dc3545';
+            } else if (confirmPassword) {
+                this.style.borderColor = '#28a745';
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - HEAL WEAR</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Cormorant+Garamond:wght@300;400;500&family=Cormorant+Infant:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/home.css">
+    
+    <style>
+        body {
+            background-color: #1a1a1a;
+            font-family: 'Poppins', sans-serif;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+        }
+        .login-container {
+            max-width: 450px;
+            width: 100%;
+            background: #2d2d2d;
+            padding: 50px 40px;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            border: 1px solid #404040;
+            position: relative;
+            overflow: hidden;
+        }
+        .login-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, var(--medical-blue) 0%, var(--medical-dark) 100%);
+        }
+        .login-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .brand-logo {
+            display: inline-flex;
+            margin-bottom: 25px;
+            padding: 15px;
+            background: linear-gradient(135deg, var(--medical-blue) 0%, var(--medical-dark) 100%);
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(36, 57, 62, 0.3);
+        }
+        .brand-logo i {
+            font-size: 42px;
+            color: white;
+        }
+        .login-header h1 {
+            font-size: 36px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+            font-family: 'Playfair Display', serif;
+        }
+        .welcome-text {
+            color: #b0b0b0;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+        .form-label {
+            font-weight: 600;
+            color: white;
+            margin-bottom: 10px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .input-icon {
+            position: relative;
+            margin-bottom: 25px;
+        }
+        .input-icon i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--medical-blue);
+            z-index: 2;
+            font-size: 18px;
+        }
+        .form-control {
+            border: 2px solid #404040;
+            border-radius: 10px;
+            padding: 15px 15px 15px 50px;
+            background-color: #363636;
+            color: white;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            height: 55px;
+        }
+        .form-control::placeholder {
+            color: #b0b0b0;
+            opacity: 1;
+        }
+        .form-control:focus {
+            border-color: var(--medical-blue);
+            box-shadow: 0 0 0 0.3rem rgba(36, 57, 62, 0.25);
+            background-color: #2d2d2d;
+            color: white;
+        }
+        .btn-login {
+            background: linear-gradient(135deg, var(--medical-blue) 0%, var(--medical-dark) 100%);
+            border: none;
+            color: white;
+            font-weight: bold;
+            padding: 16px;
+            font-size: 16px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 20px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .btn-login:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(36, 57, 62, 0.4);
+            background: linear-gradient(135deg, var(--medical-light) 0%, var(--medical-blue) 100%);
+        }
+        .login-footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 1px solid #404040;
+        }
+        .login-footer a {
+            color: var(--gold-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+        .login-footer a:hover {
+            color: var(--medical-light);
+            text-decoration: none;
+        }
+        .form-check-input:checked {
+            background-color: var(--medical-blue);
+            border-color: var(--medical-blue);
+        }
+        .form-check-label {
+            color: #b0b0b0;
+            font-size: 14px;
+        }
+        .forgot-password {
+            color: var(--gold-color);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .forgot-password:hover {
+            color: var(--medical-light);
+            text-decoration: underline;
+        }
+        .options-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        /* Animation for form elements */
+        .input-icon {
+            animation: slideUp 0.5s ease forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .input-icon:nth-child(1) { animation-delay: 0.1s; }
+        .input-icon:nth-child(2) { animation-delay: 0.2s; }
+        
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <!-- Header -->
+        <div class="login-header">
+            <div class="brand-logo">
+                <i class="fas fa-user-md"></i>
+            </div>
+            <h1>HEAL WEAR</h1>
+            <p class="welcome-text">Sign in to access your medical scrubs account and continue shopping</p>
+        </div>
+
+        <!-- Login Form -->
+        <form id="loginForm">
+            <!-- Email -->
+            <div class="input-icon">
+                <i class="fas fa-envelope"></i>
+                <input type="email" class="form-control" id="email" placeholder="Enter your email address" required>
+            </div>
+
+            <!-- Password -->
+            <div class="input-icon">
+                <i class="fas fa-lock"></i>
+                <input type="password" class="form-control" id="password" placeholder="Enter your password" required>
+            </div>
+
+            <!-- Remember Me & Forgot Password -->
+            <div class="options-row">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="rememberMe">
+                    <label class="form-check-label" for="rememberMe">
+                        Remember me
+                    </label>
+                </div>
+                <a href="forgot-password.html" class="forgot-password">Forgot Password?</a>
+            </div>
+
+            <!-- Login Button -->
+            <button type="submit" class="btn btn-login">
+                <i class="fas fa-sign-in-alt me-2"></i>Sign In
+            </button>
+        </form>
+
+        <!-- Footer -->
+        <div class="login-footer">
+            <p style="color: #b0b0b0; margin-bottom: 15px; font-size: 14px;">
+                Don't have an account? 
+                <a href="register.html" style="font-weight: bold; color: var(--gold-color);">Create Account</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- SweetAlert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <!-- Custom JS -->
+    <script>
+        // Check user credentials in localStorage
+        function validateUser(email, password) {
+            const users = JSON.parse(localStorage.getItem('healwear_users')) || [];
+            const user = users.find(u => u.email === email && u.password === password);
+            return user;
+        }
+
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const rememberMe = document.getElementById('rememberMe').checked;
+            
+            if(email && password) {
+                const user = validateUser(email, password);
+                
+                if (user) {
+                    // Save current user to localStorage
+                    localStorage.setItem('healwear_current_user', JSON.stringify(user));
+                    
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Welcome back to HEAL WEAR!',
+                        html: `
+                            <div style="text-align: center;">
+                                <i class="fas fa-user-md" style="font-size: 48px; color: #24393E; margin-bottom: 15px;"></i>
+                                <p style="color: #333; margin-bottom: 0;">Login successful! Redirecting to your account...</p>
+                            </div>
+                        `,
+                        confirmButtonColor: '#24393E',
+                        confirmButtonText: 'Continue',
+                        timer: 2000,
+                        timerProgressBar: true
+                    }).then((result) => {
+                        window.location.href = '../index.html';
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Login Failed',
+                        html: `
+                            <div style="text-align: center;">
+                                <p style="color: #333; margin-bottom: 15px;">User not found or incorrect password.</p>
+                                <p style="color: #666; font-size: 14px;">Please check your credentials or create a new account.</p>
+                            </div>
+                        `,
+                        showCancelButton: true,
+                        confirmButtonText: 'Create Account',
+                        cancelButtonText: 'Try Again',
+                        confirmButtonColor: '#24393E',
+                        cancelButtonColor: '#6c757d'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = 'register.html';
+                        }
+                    });
+                }
+            } else {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Missing Information',
+                    text: 'Please enter both email and password',
+                    confirmButtonColor: '#24393E'
+                });
+            }
+        });
+
+        // Interactive effects
+        document.querySelectorAll('.form-control').forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.querySelector('i').style.color = 'var(--medical-light)';
+                this.style.borderColor = 'var(--medical-blue)';
+            });
+            
+            input.addEventListener('blur', function() {
+                this.parentElement.querySelector('i').style.color = 'var(--medical-blue)';
+                if (!this.value) {
+                    this.style.borderColor = '#404040';
+                }
+            });
+        });
+
+        // Forgot password handler - redirect to forgot password page
+        document.querySelector('.forgot-password').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.location.href = 'forgot-password.html';
+        });
+
+        // Check if user is already logged in
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentUser = localStorage.getItem('healwear_current_user');
+            if (currentUser) {
+                // Optional: Auto-fill email if user exists and "Remember me" was checked
+                const userData = JSON.parse(currentUser);
+                document.getElementById('email').value = userData.email;
+            }
+        });
+    </script>
+</body>
+
+</html>
