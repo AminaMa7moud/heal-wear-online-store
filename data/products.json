@@ -12,7 +12,7 @@
       ],
       "stock": 50,
       "description": "Premium medical scrubs designed for healthcare professionals",
-      "image": "../imges/outfits/outfit1.webp"
+      "image": "../imges/products/Professional Medical Scrubs.PNG"
     },
     {
       "id": 2,
@@ -27,7 +27,7 @@
       ],
       "stock": 30,
       "description": "Advanced moisture-wicking technology for operating rooms",
-      "image": "../imges/outfits/oufit2.jpg"
+      "image": "../imges/products/black-1.PNG"
     },
     {
       "id": 3,
@@ -41,7 +41,80 @@
       ],
       "stock": 25,
       "description": "Stylish and functional uniforms for nursing professionals",
-      "image": "../imges/outfits/outfit3.jpg"
+      "image": "../imges/products/blue-1.PNG"
+    },
+    {
+      "id": 4,
+      "name": "Comfort Fit Nursing Scrubs",
+      "price": 320,
+      "type": "Nursing Scrubs",
+      "availableSizes": ["XS", "S", "M", "L", "XL"],
+      "availableColors": [
+        {"name": "Ceil Blue", "value": "#92A1CF"},
+        {"name": "Lavender", "value": "#E6E6FA"},
+        {"name": "Mint Green", "value": "#98FB98"}
+      ],
+      "stock": 45,
+      "description": "Ultra-comfortable scrubs with stretch fabric for long nursing shifts",
+      "image": "../imges/products/green-1.PNG"
+    },
+    {
+      "id": 5,
+      "name": "Emergency Room Scrubs Pro",
+      "price": 450,
+      "type": "ER Scrubs",
+      "availableSizes": ["S", "M", "L", "XL", "XXL"],
+      "availableColors": [
+        {"name": "Dark Green", "value": "#006400"},
+        {"name": "Forest Green", "value": "#228B22"},
+        {"name": "Hunter Green", "value": "#355E3B"}
+      ],
+      "stock": 35,
+      "description": "High-performance scrubs designed for emergency room professionals",
+      "image": "../imges/products/red-1.PNG"
+    },
+    {
+      "id": 6,
+      "name": "Classic Nurse Dress Uniform",
+      "price": 280,
+      "type": "Nurse Dress",
+      "availableSizes": ["S", "M", "L"],
+      "availableColors": [
+        {"name": "Pure White", "value": "#F8F8FF"},
+        {"name": "Off White", "value": "#FAF0E6"}
+      ],
+      "stock": 20,
+      "description": "Traditional nurse dress uniform with modern comfort features",
+      "image": "../imges/products/pink.PNG"
+    },
+    {
+      "id": 7,
+      "name": "Lab Coat & Scrubs Combo",
+      "price": 520,
+      "type": "Lab Combo",
+      "availableSizes": ["M", "L", "XL"],
+      "availableColors": [
+        {"name": "Professional White", "value": "#FFFFFF"},
+        {"name": "Light Gray", "value": "#D3D3D3"}
+      ],
+      "stock": 15,
+      "description": "Complete professional set including lab coat and matching scrubs",
+      "image": "../imges/products/nurse.PNG"
+    },
+    {
+      "id": 8,
+      "name": "Pediatric Nursing Scrubs",
+      "price": 390,
+      "type": "Pediatric Scrubs",
+      "availableSizes": ["XS", "S", "M", "L"],
+      "availableColors": [
+        {"name": "Soft Pink", "value": "#FFB6C1"},
+        {"name": "Baby Blue", "value": "#89CFF0"},
+        {"name": "Lemon Yellow", "value": "#FFFACD"}
+      ],
+      "stock": 40,
+      "description": "Friendly and colorful scrubs designed for pediatric nursing staff",
+      "image": "../imges/products/yellow.PNG"
     }
   ]
 }

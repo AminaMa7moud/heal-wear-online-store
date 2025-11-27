@@ -2,24 +2,9 @@
 let allProducts = [];
 let currentProduct = null;
 
-// Check if user is logged in
+// Check if user is logged in - always return true now
 function checkUserLogin() {
-    const currentUser = localStorage.getItem('healwear_current_user');
-    if (!currentUser) {
-        Swal.fire({
-            icon: 'warning',
-            title: 'Login Required',
-            text: 'Please login first to access the website',
-            confirmButtonColor: '#24393E',
-            confirmButtonText: 'Go to Login'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = 'pages/login.html';
-            }
-        });
-        return false;
-    }
-    return true;
+    return true; // أي حد يقدر يتصفح
 }
 
 // Save selected product to localStorage for product details page
@@ -50,7 +35,7 @@ function displayProducts(products) {
                 <div class="product-item bg-light mb-4" data-product-id="${product.id}">
                     <div class="product-img position-relative overflow-hidden">
                         <img class="img-fluid w-100" src="${product.image}" alt="${product.name}" 
-                             onerror="this.src='imges/placeholder.jpg'" style="height: 250px; object-fit: cover;">
+                             onerror="this.src='imges/placeholder.jpg'" style="height: 300px; object-fit: fill;">
                         <div class="product-action text-center mt-2">
                             <!-- Add to Cart Button -->
                             <a class="btn btn-medical-action btn-square add-to-cart" data-id="${product.id}">
@@ -114,8 +99,7 @@ function displayProducts(products) {
 
 // View product details function
 function viewProductDetails(productId) {
-    if (!checkUserLogin()) return;
-
+    // No login check needed anymore
     const product = allProducts.find(p => p.id == productId);
     if (product) {
         // Save product to localStorage
@@ -128,8 +112,7 @@ function viewProductDetails(productId) {
 
 // Show add to cart popup
 function showAddToCartPopup(productId) {
-    if (!checkUserLogin()) return;
-
+    // No login check needed anymore
     const product = allProducts.find(p => p.id == productId);
     if (!product) return;
 
@@ -256,22 +239,21 @@ function addToCart(product) {
     const quantity = parseInt(document.querySelector('.quantity-input').value);
     const totalPrice = product.price * quantity;
 
-    // Get current user
-    const currentUser = JSON.parse(localStorage.getItem('healwear_current_user'));
-
+    // Get current user or create guest user
+    let currentUser = JSON.parse(localStorage.getItem('healwear_current_user'));
+    
+    // If no user logged in, create guest user
     if (!currentUser) {
-        Swal.fire({
-            icon: 'warning',
-            title: 'Login Required',
-            text: 'Please login first to add items to cart',
-            confirmButtonColor: '#24393E',
-            confirmButtonText: 'Go to Login'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = 'pages/login.html';
-            }
-        });
-        return;
+        currentUser = {
+            id: 'guest_' + Date.now(),
+            firstName: 'Guest',
+            lastName: 'User',
+            email: 'guest@example.com',
+            phone: '',
+            isGuest: true,
+            cart: []
+        };
+        localStorage.setItem('healwear_current_user', JSON.stringify(currentUser));
     }
 
     // Check if product already exists in cart
@@ -327,8 +309,12 @@ function addToCart(product) {
     if (userIndex !== -1) {
         allUsers[userIndex] = currentUser;
         localStorage.setItem('healwear_users', JSON.stringify(allUsers));
-        localStorage.setItem('healwear_current_user', JSON.stringify(currentUser));
+    } else {
+        // For guest users, just save to current user
+        allUsers.push(currentUser);
+        localStorage.setItem('healwear_users', JSON.stringify(allUsers));
     }
+    localStorage.setItem('healwear_current_user', JSON.stringify(currentUser));
 
     Swal.fire({
         icon: 'success',
@@ -359,46 +345,22 @@ function isProductInCart(productId, size, color) {
 
 // Setup Best Seller section interactions
 function setupBestSellerInteractions() {
-    // Add event listeners for best seller view buttons
-    document.querySelectorAll('.outfit-card .view-product').forEach(button => {
-        button.addEventListener('click', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-            const productId = this.getAttribute('data-id');
-            viewProductDetails(productId);
-        });
-    });
-
-    // Add event listeners for best seller add to cart buttons
-    document.querySelectorAll('.outfit-card .add-to-cart').forEach(button => {
-        button.addEventListener('click', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-            const productId = this.getAttribute('data-id');
-            showAddToCartPopup(productId);
-        });
-    });
-
-    // Add click event to best seller cards for viewing details
     document.querySelectorAll('.outfit-card').forEach(card => {
-        card.style.cursor = 'pointer';
-        card.addEventListener('click', function (e) {
-            // Only trigger if not clicking on buttons
-            if (!e.target.closest('.btn')) {
-                const productId = this.getAttribute('data-product-id');
-                viewProductDetails(productId);
-            }
-        });
+        card.style.cursor = 'default';
+    });
+
+    document.querySelectorAll('.outfit-card .view-product, .outfit-card .add-to-cart').forEach(button => {
+        button.style.display = 'none';
+    });
+
+    document.querySelectorAll(".small-images img").forEach(function(smallImg) {
+        smallImg.style.cursor = 'default';
     });
 }
 
 // Initialize when page loads
 document.addEventListener('DOMContentLoaded', function () {
-    // Check if user is logged in
-    if (!checkUserLogin()) {
-        return;
-    }
-
+    // No login check needed anymore - anyone can browse
     loadProducts();
     setupBestSellerInteractions();
 

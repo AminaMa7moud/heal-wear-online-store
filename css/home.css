@@ -376,21 +376,6 @@ body {
     text-decoration: none;
 }
 
-/* ===== BACK TO TOP ===== */
-.back-to-top {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    padding: 10px;
-    z-index: 1000;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.back-to-top:hover {
-    background-color: var(--border-color);
-    border-color: var(--medical-blue);
-}
 
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 768px) {
@@ -837,4 +822,21 @@ body {
     padding: 15px;
     border-radius: 8px;
     margin: 15px 0;
+}
+
+
+/* Mobile cart icon positioning */
+@media (max-width: 991.98px) {
+    #cart-mobile {
+        order: 1;
+        margin-right: 10px;
+    }
+    
+    .navbar-toggler {
+        order: 2;
+    }
+    
+    .navbar-brand {
+        order: 0;
+    }
 }

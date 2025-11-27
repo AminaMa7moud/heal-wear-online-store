@@ -50,10 +50,9 @@ function displayCartItems(cartItems) {
                         <thead>
                             <tr>
                                 <th scope="col" class="text-white">Product</th>
-                                <th scope="col" class="text-white">Size</th>
-                                <th scope="col" class="text-white">Color</th>
+                                <th scope="col" class="text-white">Product Size</th>
+                                <th scope="col" class="text-white">Product Color</th>
                                 <th scope="col" class="text-white">Quantity</th>
-                                <th scope="col" class="text-white">Price</th>
                                 <th scope="col" class="text-white">Total</th>
                                 <th scope="col" class="text-white">Action</th>
                             </tr>
@@ -111,7 +110,6 @@ function displayCartItems(cartItems) {
                                     data-price="${item.price}" data-cart-id="${item.id}">
                             </div>
                         </td>
-                        <td class="product-price text-white">${item.price} EGP</td>
                         <td class="product-total text-white">${item.totalPrice} EGP</td>
                         <td>
                             <button class="btn btn-danger btn-sm remove-product" data-cart-id="${item.id}">

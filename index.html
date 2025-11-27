@@ -26,12 +26,17 @@
 
 <body>
     <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark my-2">
+    <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
             <!-- Left Section (Brand) -->
-            <a class="navbar-brand me-5" href="pages/admin-dashboard.html">
-                <span class="h1 text-uppercase px-2 rounded-start">Heal</span>
-                <span class="h1 text-uppercase px-2 rounded-end">Wear</span>
+            <a class="navbar-brand me-5">
+                <span class="h1 text-uppercase px-1 rounded-start">Heal</span>
+                <span class="h1 text-uppercase px-1 rounded-end">Wear</span>
+            </a>
+
+            <!-- Shopping Cart Icon - Visible on mobile -->
+            <a href="pages/ShoppingCart.html" id="cart-mobile" title="Shopping Cart" class="nav-icon d-lg-none me-3">
+                <i class="fas fa-shopping-cart text-white"></i>
             </a>
 
             <!-- toggler with target id  -->
@@ -50,8 +55,10 @@
                             Us</a></li>
                 </ul>
 
-                <a href="pages/ShoppingCart.html" id="cart" title="Shopping Cart" class="nav-icon">
-                    <i class="fas fa-shopping-cart me-4 text-white"></i>
+                <!-- Shopping Cart Icon - Hidden on mobile -->
+                <a href="pages/ShoppingCart.html" id="cart-desktop" title="Shopping Cart"
+                    class="nav-icon d-none d-lg-block me-4">
+                    <i class="fas fa-shopping-cart text-white"></i>
                 </a>
 
                 <a href="pages/login.html" id="login" title="log in" class="nav-icon">
@@ -81,7 +88,7 @@
     <!-- End of Offers Section -->
 
     <!-- Best Seller Section -->
-    <div class="container-fluid ps-5 my-5">
+    <div class="container-fluid my-5">
         <h2 class="text-center section-title position-relative text-uppercase mx-xl-5 mb-4 mt-1"><span
                 class="text-white py-2 px-3 rounded-pill shadow-sm best-seller-title">Premium Collection</span></h2>
         <div class="row justify-content-center">
@@ -91,13 +98,13 @@
                     <div class="card-header-medical">
                         <span class="medical-badge">BEST SELLER</span>
                     </div>
-                    <img src="imges/outfits/outfit1.webp" alt="Outfit" class="main-image">
+                    <img src="imges/products/Professional Medical Scrubs.PNG" alt="Outfit" class="main-image">
                     <div class="p-3 text-center">
                         <div class="small-images d-flex justify-content-center">
-                            <img src="imges/outfits/1_1.JPG" alt="Pant">
-                            <img src="imges/outfits/1_2.JPG" alt="Shirt">
-                            <img src="imges/outfits/1_3.JPG" alt="Shoes">
-                            <img src="imges/outfits/1_4.webp" alt="Glasses">
+                            <img src="imges/products/black-1.PNG" alt=" ">
+                            <img src="imges/products/blue-1.PNG" alt=" ">
+                            <img src="imges/products/green-1.PNG" alt=" ">
+                            <img src="imges/products/red-1.PNG" alt=" ">
                         </div>
                     </div>
                     <div class="description">
@@ -124,13 +131,13 @@
                     <div class="card-header-medical">
                         <span class="medical-badge">TRENDING</span>
                     </div>
-                    <img src="imges/outfits/oufit2.jpg" alt="Outfit" class="main-image">
+                    <img src="imges/products/Surgical Scrubs Set-1.PNG" alt="Outfit" class="main-image">
                     <div class="p-3 text-center">
                         <div class="small-images d-flex justify-content-center">
-                            <img src="imges/outfits/2-1.jpg" alt="Pant">
-                            <img src="imges/outfits/2-2.jpg" alt="Shirt">
-                            <img src="imges/outfits/2-3.jpg" alt="Shoes">
-                            <img src="imges/outfits/2-4.jpg" alt="Glasses">
+                            <img src="imges/products/Surgical Scrubs Set-1.PNG" alt=" ">
+                            <img src="imges/products/Surgical Scrubs Set-2.PNG" alt=" ">
+                            <img src="imges/products/Surgical Scrubs Set-3.PNG" alt=" ">
+                            <img src="imges/products/Surgical Scrubs Set-4.PNG" alt=" ">
                         </div>
                     </div>
                     <div class="description">
@@ -157,13 +164,13 @@
                     <div class="card-header-medical">
                         <span class="medical-badge">NEW</span>
                     </div>
-                    <img src="imges/outfits/outfit3.jpg" alt="Outfit" class="main-image">
+                    <img src="imges/products/pink.PNG" alt="Outfit" class="main-image">
                     <div class="p-3 text-center">
                         <div class="small-images d-flex justify-content-center">
-                            <img src="imges/outfits/3-1.jpg" alt="Pant">
-                            <img src="imges/outfits/3-2.jpg" alt="Shirt">
-                            <img src="imges/outfits/3-3.jpg" alt="Shoes">
-                            <img src="imges/outfits/3-4.jpg" alt="Glasses">
+                            <img src="imges/products/pink.PNG" alt=" ">
+                            <img src="imges/products/nurse.PNG" alt=" ">
+                            <img src="imges/products/yellow.PNG" alt=" ">
+                            <img src="imges/products/pink.PNG" alt=" ">
                         </div>
                     </div>
                     <div class="description">
@@ -261,10 +268,9 @@
                 </div>
             </div>
             <div class="row border-top mx-xl-5 py-4" style="border-color: rgba(255, 255, 255, 0.1) !important;">
-                <div class="col-md-6 px-xl-0">
-                    <p class="mb-md-0 text-center text-md-left">
-                        &copy; 2024 <a class="text-medical-blue" href="#">Heal Wear</a>. All Rights Reserved.
-                        <span class="d-block d-md-inline">MEDICAL SCRUBS</span>
+                <div class="col-12 text-center">
+                    <p class="mb-0">
+                        &copy; Developed with Excellence by <strong class="text-medical-blue">A & M</strong> | Software Engineering
                     </p>
                 </div>
             </div>

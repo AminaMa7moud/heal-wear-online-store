@@ -6,258 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Details - HEAL WEAR</title>
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Cormorant+Garamond:wght@300;400;500&family=Cormorant+Infant:wght@300;400;500&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Cormorant+Garamond:wght@300;400;500&family=Cormorant+Infant:wght@300;400;500&display=swap"
+        rel="stylesheet">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/productDetail.css">
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Sweet Alert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../js/navbar.js"></script>
 
-    <style>
-        .product-image-container {
-            height: 500px;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 8px 25px rgba(36, 57, 62, 0.15);
-        }
-
-        .product-image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .product-info-card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            padding: 25px;
-            border: 1px solid var(--border-color);
-            height: 500px;
-        }
-
-        .section-title {
-            color: var(--medical-blue);
-            font-weight: 600;
-            margin-bottom: 15px;
-            font-size: 1rem;
-        }
-
-        .size-options-container {
-            display: flex;
-            gap: 8px;
-            margin: 10px 0;
-            flex-wrap: wrap;
-        }
-
-        .size-option {
-            position: relative;
-        }
-
-        .size-option input {
-            display: none;
-        }
-
-        .size-label {
-            display: block;
-            padding: 0;
-            border: none;
-            border-radius: 0;
-            background: transparent;
-            color: var(--text-light);
-            cursor: pointer;
-            transition: all 0.2s ease;
-            font-weight: 500;
-            text-align: center;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            min-width: 30px;
-        }
-
-        .size-option input:checked+.size-label {
-            background: transparent;
-            color: var(--medical-blue);
-            font-weight: 700;
-            transform: scale(1.1);
-        }
-
-        .color-options-container {
-            display: flex;
-            gap: 8px;
-            margin: 8px 0;
-            flex-wrap: wrap;
-        }
-
-        .color-option {
-            position: relative;
-            cursor: pointer;
-        }
-
-        .color-swatch {
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
-            border: 1.5px solid transparent;
-            transition: all 0.2s ease;
-            position: relative;
-        }
-
-        .color-swatch.selected {
-            border-color: var(--medical-blue);
-            transform: scale(1.1);
-        }
-
-        .color-swatch.selected::after {
-            content: '✓';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
-            font-weight: bold;
-            font-size: 10px;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-        }
-
-        .color-name {
-            position: absolute;
-            bottom: -18px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 9px;
-            color: var(--text-muted);
-            white-space: nowrap;
-        }
-
-        .add-to-cart-btn {
-            background: linear-gradient(135deg, var(--medical-blue) 0%, var(--medical-dark) 100%);
-            border: none;
-            color: white;
-            padding: 12px 30px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            width: 100%;
-            margin-top: 20px;
-        }
-
-        .add-to-cart-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(36, 57, 62, 0.3);
-        }
-
-        .add-to-cart-btn:disabled {
-            background: #6c757d;
-            transform: none;
-            box-shadow: none;
-            cursor: not-allowed;
-        }
-
-        .stock-badge {
-            background: var(--medical-blue);
-            color: white;
-            padding: 4px 12px;
-            border-radius: 15px;
-            font-size: 12px;
-            font-weight: 600;
-        }
-
-        .out-of-stock {
-            background: #dc3545;
-        }
-
-        .low-stock {
-            background: #ffc107;
-            color: #000;
-        }
-
-        .product-features-section {
-            background: var(--section-bg);
-            border-radius: 10px;
-            padding: 20px;
-            margin-top: 25px;
-            border-left: 3px solid var(--medical-blue);
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-        }
-
-        .feature-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-
-        .feature-item i {
-            color: var(--medical-blue);
-            font-size: 14px;
-            width: 16px;
-        }
-
-        .product-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 15px;
-        }
-
-        .rating-container {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 10px;
-        }
-
-        .price-tag {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--gold-color);
-            margin-bottom: 15px;
-        }
-
-        .product-description {
-            font-size: 1rem;
-            line-height: 1.5;
-            color: var(--text-light);
-            margin-bottom: 20px;
-        }
-
-        .product-details-section {
-            background: var(--card-bg);
-            border-radius: 12px;
-            padding: 25px;
-            margin-top: 25px;
-            border: 1px solid var(--border-color);
-        }
-
-        .details-features-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-            margin-top: 25px;
-        }
-    </style>
 </head>
 
 <body>
     <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark my-2">
+    <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
             <!-- Left Section (Brand) -->
-            <a class="navbar-brand me-5" href="../index.html">
-                <span class="h1 text-uppercase px-2 rounded-start">Heal</span>
-                <span class="h1 text-uppercase px-2 rounded-end">Wear</span>
+            <a class="navbar-brand me-5">
+                <span class="h1 text-uppercase px-1 rounded-start">Heal</span>
+                <span class="h1 text-uppercase px-1 rounded-end">Wear</span>
+            </a>
+
+            <!-- Shopping Cart Icon - Visible on mobile -->
+            <a href="pages/ShoppingCart.html" id="cart-mobile" title="Shopping Cart" class="nav-icon d-lg-none me-3">
+                <i class="fas fa-shopping-cart text-white"></i>
             </a>
 
             <!-- toggler with target id  -->
@@ -270,13 +49,15 @@
             <!-- collapsable content -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-5">
-                    <li class="nav-item"><a href="../index.html" class="nav-link text-white nav-hover">Home</a></li>
+                    <li class="nav-item"><a href="../index.html" class="nav-link text-white active nav-hover">Home</a></li>
                     <li class="nav-item"><a href="../index.html#products" class="nav-link text-white nav-hover">Products</a></li>
                     <li class="nav-item"><a href="contactUs.html" class="nav-link text-white nav-hover">Contact Us</a></li>
                 </ul>
 
-                <a href="ShoppingCart.html" id="cart" title="Shopping Cart" class="nav-icon">
-                    <i class="fas fa-shopping-cart me-4 text-white"></i>
+                <!-- Shopping Cart Icon - Hidden on mobile -->
+                <a href="ShoppingCart.html" id="cart-desktop" title="Shopping Cart"
+                    class="nav-icon d-none d-lg-block me-4">
+                    <i class="fas fa-shopping-cart text-white"></i>
                 </a>
 
                 <a href="login.html" id="login" title="log in" class="nav-icon">
@@ -290,6 +71,7 @@
         </div>
     </nav>
     <!-- end of Navigation Bar -->
+     
 
     <!-- Product Details -->
     <div class="container-fluid pb-5 mt-4">
@@ -313,12 +95,12 @@
                     <!-- Rating and Price -->
                     <div class="rating-container">
                         <div class="text-medical-blue" id="productRating"></div>
-                        <small class="text-muted" id="ratingText">Loading...</small>
+                        <small class="text-white" id="ratingText">Loading...</small>
                     </div>
 
                     <div class="price-tag" id="productPrice">Loading...</div>
 
-                    <p class="product-description" id="productDescription">
+                    <p class="product-description text-white" id="productDescription">
                         Loading product description...
                     </p>
 
@@ -349,68 +131,66 @@
         <!-- Product Details and Features -->
         <div class="row px-xl-5 mt-3">
             <div class="col-12">
-                <div class="details-features-container">
-                    <!-- Product Details -->
-                    <div class="product-details-section">
-                        <h4 class="mb-3 text-medical-blue">Product Details</h4>
-                        <table class="table table-bordered">
-                            <tbody>
-                                <tr>
-                                    <td class="fw-bold" style="width: 40%;">Material Composition</td>
-                                    <td>65% Cotton, 35% Polyester</td>
-                                </tr>
-                                <tr>
-                                    <td class="fw-bold">Fabric Weight</td>
-                                    <td>180 GSM</td>
-                                </tr>
-                                <tr>
-                                    <td class="fw-bold">Care Instructions</td>
-                                    <td>Machine wash 40°C, Tumble dry low</td>
-                                </tr>
-                                <tr>
-                                    <td class="fw-bold">Available Sizes</td>
-                                    <td id="availableSizes">Loading...</td>
-                                </tr>
-                                <tr>
-                                    <td class="fw-bold">Pockets</td>
-                                    <td>4 Functional Pockets</td>
-                                </tr>
-                                <tr>
-                                    <td class="fw-bold">Closure</td>
-                                    <td>Elastic Waist with Drawstring</td>
-                                </tr>
-                                <tr>
-                                    <td class="fw-bold">Origin</td>
-                                    <td>Made in Egypt</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                <!-- Product Details -->
+                <div class="product-details-section mb-4">
+                    <h4 class="mb-3 text-medical-blue">Product Details</h4>
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="fw-bold text-white">Material Composition</td>
+                                <td class="text-white">65% Cotton, 35% Polyester</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-white">Fabric Weight</td>
+                                <td class="text-white">180 GSM</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-white">Care Instructions</td>
+                                <td class="text-white">Machine wash 40°C, Tumble dry low</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-white">Available Sizes</td>
+                                <td class="text-white" id="availableSizes">Loading...</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-white">Pockets</td>
+                                <td class="text-white">4 Functional Pockets</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-white">Closure</td>
+                                <td class="text-white">Elastic Waist with Drawstring</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-white">Origin</td>
+                                <td class="text-white">Made in Egypt</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
-                    <!-- Product Features -->
-                    <div class="product-features-section">
-                        <h4 class="mb-3 text-medical-blue">Product Features</h4>
-                        <div class="features-grid">
-                            <div class="feature-item">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Premium Quality Fabric</span>
-                            </div>
-                            <div class="feature-item">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Machine Washable</span>
-                            </div>
-                            <div class="feature-item">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Multiple Functional Pockets</span>
-                            </div>
-                            <div class="feature-item">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Comfort Fit for Long Shifts</span>
-                            </div>
-                            <div class="feature-item">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Breathable Material</span>
-                            </div>
+                <!-- Product Features -->
+                <div class="product-features-section">
+                    <h4 class="mb-3 text-medical-blue">Product Features</h4>
+                    <div class="features-grid">
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle text-medical-blue"></i>
+                            <span class="text-white">Premium Quality Fabric</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle text-medical-blue"></i>
+                            <span class="text-white">Machine Washable</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle text-medical-blue"></i>
+                            <span class="text-white">Multiple Functional Pockets</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle text-medical-blue"></i>
+                            <span class="text-white">Comfort Fit for Long Shifts</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle text-medical-blue"></i>
+                            <span class="text-white">Breathable Material</span>
                         </div>
                     </div>
                 </div>
@@ -437,13 +217,13 @@
                     <div class="col-md-4 mb-5">
                         <h5 class="text-uppercase mb-4">Quick Shop</h5>
                         <div class="d-flex flex-column justify-content-start align-items-start">
-                            <a class="text-white mb-2 footer-link" href="index.html"><i
+                            <a class="text-white mb-2 footer-link" href="../index.html"><i
                                     class="fa fa-angle-right text-medical-blue mr-2 me-2"></i>Home</a>
-                            <a class="text-white mb-2 footer-link" href="pages/ShoppingCart.html"><i
+                            <a class="text-white mb-2 footer-link" href="ShoppingCart.html"><i
                                     class="fa fa-angle-right text-medical-blue mr-2 me-2"></i>Shopping Cart</a>
-                            <a class="text-white mb-2 footer-link" href="pages/checkout.html"><i
+                            <a class="text-white mb-2 footer-link" href="checkout.html"><i
                                     class="fa fa-angle-right text-medical-blue mr-2 me-2"></i>Checkout</a>
-                            <a class="text-white footer-link" href="pages/contactUs.html">
+                            <a class="text-white footer-link" href="contactUs.html">
                                 <i class="fa fa-angle-right text-medical-blue mr-2 me-2"></i>Contact Us</a>
                         </div>
                     </div>
@@ -453,13 +233,16 @@
                         <div>
                             <h6 class="text-uppercase mt-4 mb-3">Connect With Us</h6>
                             <div class="d-flex">
-                                <a href="https://www.facebook.com/share/1G9T8FU8yA/" class="social-icon ms-2" target="_blank">
+                                <a href="https://www.facebook.com/share/1G9T8FU8yA/" class="social-icon ms-2"
+                                    target="_blank">
                                     <i class="fab fa-facebook-f mr-2 p-2"></i>
                                 </a>
-                                <a href="https://www.instagram.com/healwear9?igsh=MTFrOWV2aWk2OHllZw==" class="social-icon ms-2" target="_blank">
+                                <a href="https://www.instagram.com/healwear9?igsh=MTFrOWV2aWk2OHllZw=="
+                                    class="social-icon ms-2" target="_blank">
                                     <i class="fab fa-instagram mr-2 p-2"></i>
                                 </a>
-                                <a href="https://www.tiktok.com/@heal.wear8?_r=1&_t=ZS-91XWObCaAOG" class="social-icon ms-2" target="_blank">
+                                <a href="https://www.tiktok.com/@heal.wear8?_r=1&_t=ZS-91XWObCaAOG"
+                                    class="social-icon ms-2" target="_blank">
                                     <i class="fab fa-tiktok mr-2 p-2"></i>
                                 </a>
                                 <a href="https://wa.me/message/B7TX3HKZ365FG1" class="social-icon ms-2" target="_blank">
@@ -470,11 +253,10 @@
                     </div>
                 </div>
             </div>
-            <div class="row border-top mx-xl-5 py-4" style="border-color: rgba(255, 255, 255, 0.1) !important;">
-                <div class="col-md-6 px-xl-0">
-                    <p class="mb-md-0 text-center text-md-left">
-                        &copy; 2024 <a class="text-medical-blue" href="#">Heal Wear</a>. All Rights Reserved. 
-                        <span class="d-block d-md-inline">MEDICAL SCRUBS</span>
+                        <div class="row border-top mx-xl-5 py-4" style="border-color: rgba(255, 255, 255, 0.1) !important;">
+                <div class="col-12 text-center">
+                    <p class="mb-0">
+                        &copy; Developed with Excellence by <strong class="text-medical-blue">A & M</strong> | Software Engineering
                     </p>
                 </div>
             </div>
@@ -498,9 +280,9 @@
             const currentUser = JSON.parse(localStorage.getItem('healwear_current_user'));
             if (!currentUser || !currentUser.cart) return false;
 
-            return currentUser.cart.some(item => 
-                item.productId === productId && 
-                item.size === size && 
+            return currentUser.cart.some(item =>
+                item.productId === productId &&
+                item.size === size &&
                 item.color === color
             );
         }
@@ -508,7 +290,7 @@
         // Load product data
         function loadProductData() {
             const product = getSelectedProduct();
-            
+
             if (!product) {
                 Swal.fire({
                     icon: 'error',
@@ -552,7 +334,7 @@
             const rating = getProductRating(product.id);
             const ratingElement = document.getElementById('productRating');
             const ratingText = document.getElementById('ratingText');
-            
+
             ratingElement.innerHTML = generateRatingStars(rating);
             ratingText.textContent = `(${rating}/5) - ${getReviewCount(product.id)} Reviews`;
 
@@ -611,20 +393,20 @@
             let stars = '';
             const fullStars = Math.floor(rating);
             const hasHalfStar = rating % 1 !== 0;
-            
+
             for (let i = 0; i < fullStars; i++) {
                 stars += '<i class="fas fa-star"></i>';
             }
-            
+
             if (hasHalfStar) {
                 stars += '<i class="fas fa-star-half-alt"></i>';
             }
-            
+
             const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
             for (let i = 0; i < emptyStars; i++) {
                 stars += '<i class="far fa-star"></i>';
             }
-            
+
             return stars;
         }
 
@@ -645,7 +427,7 @@
                             <i class="fas fa-shopping-cart" style="font-size: 48px; color: #24393E; margin-bottom: 15px;"></i>
                             <p><strong>${product.name}</strong> is already in your cart!</p>
                             <p>Size: ${selectedSize} | Color: ${selectedColor}</p>
-                            <p class="text-muted" style="margin-top: 15px;">You can update the quantity from your cart page</p>
+                            <p class="text-white" style="margin-top: 15px;">You can update the quantity from your cart page</p>
                         </div>
                     `,
                     showCancelButton: true,
@@ -806,7 +588,7 @@
                         <div style="text-align: center;">
                             <p><strong>${product.name}</strong> is already in your cart</p>
                             <p>Size: ${selectedSize} | Color: ${selectedColor}</p>
-                            <p class="text-muted">You can update the quantity from your cart</p>
+                            <p class="text-white">You can update the quantity from your cart</p>
                         </div>
                     `,
                     showCancelButton: true,
@@ -873,7 +655,7 @@
             loadProductData();
 
             // Color selection
-            document.addEventListener('click', function(e) {
+            document.addEventListener('click', function (e) {
                 if (e.target.closest('.color-option')) {
                     const colorOption = e.target.closest('.color-option');
                     // Remove selected class from all colors
@@ -886,7 +668,7 @@
             });
 
             // Size selection
-            document.addEventListener('change', function(e) {
+            document.addEventListener('change', function (e) {
                 if (e.target.name === 'size') {
                     document.querySelectorAll('.size-label').forEach(label => {
                         label.classList.remove('selected');
@@ -896,7 +678,7 @@
             });
 
             // Add to cart button - show popup
-            document.getElementById('addToCartBtn').addEventListener('click', function() {
+            document.getElementById('addToCartBtn').addEventListener('click', function () {
                 const product = getSelectedProduct();
                 if (product && product.stock > 0) {
                     showAddToCartPopup();

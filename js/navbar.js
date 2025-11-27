@@ -36,8 +36,8 @@ function handleLogout() {
                 timer: 2000,
                 showConfirmButton: false
             }).then(() => {
-                // Redirect to login page
-                window.location.href = 'pages/login.html';
+                // Redirect to home page instead of login
+                window.location.href = '../index.html';
             });
         }
     });
@@ -58,7 +58,7 @@ function updateNavigationBar() {
         if (userIcon) {
             userIcon.className = 'fa-solid fa-user-check me-4 text-white';
             const user = getCurrentUser();
-            if (user) {
+            if (user && !user.isGuest) {
                 loginLink.title = `Logged in as ${user.firstName}`;
             }
         }
@@ -97,28 +97,20 @@ document.addEventListener('DOMContentLoaded', function() {
         userIcon.closest('a').addEventListener('click', function(e) {
             e.preventDefault();
             const user = getCurrentUser();
-            Swal.fire({
-                title: `Welcome, ${user.firstName}!`,
-                html: `
-                    <div style="text-align: center;">
-                        <i class="fas fa-user-md" style="font-size: 48px; color: #24393E; margin-bottom: 15px;"></i>
-                        <p style="color: #333; margin-bottom: 5px;"><strong>Email:</strong> ${user.email}</p>
-                        <p style="color: #666; font-size: 14px;">You are currently logged in</p>
-                    </div>
-                `,
-                confirmButtonColor: '#24393E',
-                confirmButtonText: 'OK'
-            });
+            if (user && !user.isGuest) {
+                Swal.fire({
+                    title: `Welcome, ${user.firstName}!`,
+                    html: `
+                        <div style="text-align: center;">
+                            <i class="fas fa-user-md" style="font-size: 48px; color: #24393E; margin-bottom: 15px;"></i>
+                            <p style="color: #333; margin-bottom: 5px;"><strong>Email:</strong> ${user.email}</p>
+                            <p style="color: #666; font-size: 14px;">You are currently logged in</p>
+                        </div>
+                    `,
+                    confirmButtonColor: '#24393E',
+                    confirmButtonText: 'OK'
+                });
+            }
         });
     }
 });
-
-// Export functions for use in other files (if needed)
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = {
-        isUserLoggedIn,
-        getCurrentUser,
-        handleLogout,
-        updateNavigationBar
-    };
-}

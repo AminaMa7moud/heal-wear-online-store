@@ -80,7 +80,7 @@
 .empty-cart {
     text-align: center;
     padding: 60px 20px;
-    color: #b0b0b0;
+    color: #e0e0e0;
 }
 
 .empty-cart i {
@@ -102,25 +102,152 @@
     border: 2px solid #404040;
 }
 
+/* Dropdown Styles */
 .form-select {
     background: #2d2d2d;
     border: 1px solid #404040;
-    color: white;
+    color: #e0e0e0;
+    padding: 8px 12px;
 }
 
 .form-select:focus {
     background: #2d2d2d;
     border-color: var(--medical-blue);
-    color: white;
+    color: #e0e0e0;
+    box-shadow: 0 0 0 0.2rem rgba(36, 57, 62, 0.25);
 }
 
+/* Custom Dropdown Arrow */
+.form-select {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23e0e0e0' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 16px 12px;
+}
 
+/* Dropdown Options Styling */
+.form-select option {
+    background: #2d2d2d;
+    color: #e0e0e0;
+    padding: 10px;
+}
 
+/* For Webkit browsers (Chrome, Safari) */
+.form-select::-webkit-scrollbar {
+    width: 8px;
+}
 
+.form-select::-webkit-scrollbar-track {
+    background: #363636;
+    border-radius: 4px;
+}
 
+.form-select::-webkit-scrollbar-thumb {
+    background: var(--medical-blue);
+    border-radius: 4px;
+}
 
+.form-select::-webkit-scrollbar-thumb:hover {
+    background: var(--medical-dark);
+}
 
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .cart-container {
+        padding: 20px;
+        margin: 10px;
+    }
+    
+    .cart-header h1 {
+        font-size: 28px;
+    }
+    
+    .cart-table th,
+    .cart-table td {
+        padding: 10px;
+        font-size: 14px;
+    }
+    
+    .cart-summary {
+        padding: 20px;
+        margin-top: 20px;
+    }
+    
+    .empty-cart {
+        padding: 40px 15px;
+    }
+    
+    .empty-cart i {
+        font-size: 48px;
+    }
+    
+    .empty-cart h3 {
+        font-size: 20px;
+    }
+    
+    .empty-cart p {
+        font-size: 14px;
+    }
+    
+    .quantity-control input {
+        width: 60px;
+        font-size: 14px;
+    }
+    
+    .cart-actions .btn {
+        font-size: 14px;
+        padding: 10px 15px;
+    }
+    
+    .form-select {
+        font-size: 14px;
+        padding: 6px 10px;
+    }
+}
 
-
-
-
+@media (max-width: 576px) {
+    .cart-container {
+        padding: 15px;
+    }
+    
+    .cart-header h1 {
+        font-size: 24px;
+    }
+    
+    .cart-table th,
+    .cart-table td {
+        padding: 8px;
+        font-size: 12px;
+    }
+    
+    .cart-summary {
+        padding: 15px;
+    }
+    
+    .empty-cart {
+        padding: 30px 10px;
+    }
+    
+    .empty-cart i {
+        font-size: 40px;
+    }
+    
+    .empty-cart h3 {
+        font-size: 18px;
+    }
+    
+    .color-preview {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .quantity-control input {
+        width: 50px;
+        font-size: 12px;
+    }
+    
+    .form-select {
+        font-size: 12px;
+        padding: 5px 8px;
+    }
+}
